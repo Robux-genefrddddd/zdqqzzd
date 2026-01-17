@@ -14,14 +14,62 @@ import {
 } from "lucide-react";
 
 const NAV_ITEMS = [
-  { id: "dashboard", label: "Dashboard", icon: LayoutDashboard, href: "/dashboard", divider: false },
-  { id: "editor", label: "UI Editor", icon: Palette, href: "/builder", divider: false },
-  { id: "blocks", label: "Blocks", icon: Blocks, href: "/blocks", divider: false },
-  { id: "components", label: "Components", icon: ComponentIcon, href: "/components", divider: false },
-  { id: "templates", label: "Templates", icon: Grid3x3, href: "/templates", divider: false },
-  { id: "assets", label: "Assets", icon: Image, href: "/assets", divider: true },
-  { id: "export", label: "Export", icon: FileJson, href: "/export", divider: false },
-  { id: "settings", label: "Settings", icon: Settings, href: "/settings", divider: true },
+  {
+    id: "dashboard",
+    label: "Dashboard",
+    icon: LayoutDashboard,
+    href: "/dashboard",
+    divider: false,
+  },
+  {
+    id: "editor",
+    label: "UI Editor",
+    icon: Palette,
+    href: "/builder",
+    divider: false,
+  },
+  {
+    id: "blocks",
+    label: "Blocks",
+    icon: Blocks,
+    href: "/blocks",
+    divider: false,
+  },
+  {
+    id: "components",
+    label: "Components",
+    icon: ComponentIcon,
+    href: "/components",
+    divider: false,
+  },
+  {
+    id: "templates",
+    label: "Templates",
+    icon: Grid3x3,
+    href: "/templates",
+    divider: false,
+  },
+  {
+    id: "assets",
+    label: "Assets",
+    icon: Image,
+    href: "/assets",
+    divider: true,
+  },
+  {
+    id: "export",
+    label: "Export",
+    icon: FileJson,
+    href: "/export",
+    divider: false,
+  },
+  {
+    id: "settings",
+    label: "Settings",
+    icon: Settings,
+    href: "/settings",
+    divider: true,
+  },
 ];
 
 const ACCOUNT_ITEMS = [
@@ -54,8 +102,12 @@ export function Sidebar() {
             </svg>
           </div>
           <div className="min-w-0">
-            <h1 className="text-sm font-semibold text-sidebar-foreground truncate">BuildUI</h1>
-            <p className="text-xs text-sidebar-accent-foreground leading-tight">Creator Studio</p>
+            <h1 className="text-sm font-semibold text-sidebar-foreground truncate">
+              BuildUI
+            </h1>
+            <p className="text-xs text-sidebar-accent-foreground leading-tight">
+              Creator Studio
+            </p>
           </div>
         </div>
       </div>
@@ -75,7 +127,7 @@ export function Sidebar() {
                   "text-xs font-medium gap-2.5 group",
                   active
                     ? "bg-sidebar-accent/80 text-sidebar-primary shadow-sm"
-                    : "text-sidebar-accent-foreground hover:bg-sidebar-accent/40 hover:text-sidebar-foreground"
+                    : "text-sidebar-accent-foreground hover:bg-sidebar-accent/40 hover:text-sidebar-foreground",
                 )}
               >
                 <Icon className="w-4 h-4 flex-shrink-0" />
@@ -84,7 +136,9 @@ export function Sidebar() {
                   <div className="absolute right-0 top-1/2 -translate-y-1/2 w-1 h-5 bg-primary rounded-l-full" />
                 )}
               </Link>
-              {item.divider && <div className="my-1 border-t border-sidebar-border/40" />}
+              {item.divider && (
+                <div className="my-1 border-t border-sidebar-border/40" />
+              )}
             </div>
           );
         })}
@@ -101,7 +155,7 @@ export function Sidebar() {
               className={cn(
                 "w-full flex items-center gap-2.5 px-3 py-2 rounded-md transition-all duration-150",
                 "text-xs font-medium text-sidebar-accent-foreground hover:bg-sidebar-accent/40 hover:text-sidebar-foreground",
-                "text-left"
+                "text-left",
               )}
             >
               <Icon className="w-4 h-4 flex-shrink-0" />
@@ -117,8 +171,12 @@ export function Sidebar() {
               U
             </div>
             <div className="flex-1 min-w-0">
-              <p className="text-xs font-medium text-sidebar-foreground truncate">user@example.com</p>
-              <p className="text-xs text-sidebar-accent-foreground leading-tight">Creator</p>
+              <p className="text-xs font-medium text-sidebar-foreground truncate">
+                user@example.com
+              </p>
+              <p className="text-xs text-sidebar-accent-foreground leading-tight">
+                Creator
+              </p>
             </div>
           </div>
         </div>

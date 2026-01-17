@@ -4,7 +4,20 @@ import { BlockType } from "@/lib/types";
 import { useBuilder } from "@/lib/builder-context";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { cn } from "@/lib/utils";
-import { ChevronDown, Grid3x3, Layout, Menu, Square, Type, Input, FileText, AlertSquare, Images, Columns, Settings } from "lucide-react";
+import {
+  ChevronDown,
+  Grid3x3,
+  Layout,
+  Menu,
+  Square,
+  Type,
+  Input,
+  FileText,
+  AlertSquare,
+  Images,
+  Columns,
+  Settings,
+} from "lucide-react";
 
 const BLOCK_CATEGORIES: {
   name: string;
@@ -58,7 +71,9 @@ const BLOCK_ICONS: Record<BlockType, React.ReactNode> = {
 
 export function BlocksPalette() {
   const { addBlock } = useBuilder();
-  const [expandedCategory, setExpandedCategory] = useState<string | null>("Layout");
+  const [expandedCategory, setExpandedCategory] = useState<string | null>(
+    "Layout",
+  );
 
   const handleDragStart = (e: React.DragEvent, blockType: BlockType) => {
     e.dataTransfer.effectAllowed = "copy";
@@ -81,7 +96,9 @@ export function BlocksPalette() {
     <div className="w-72 border-r border-border bg-card/50 flex flex-col">
       <div className="px-4 py-3.5 border-b border-border/60">
         <h2 className="text-sm font-semibold text-foreground">Blocks</h2>
-        <p className="text-xs text-muted-foreground mt-1">Drag to canvas or click to add</p>
+        <p className="text-xs text-muted-foreground mt-1">
+          Drag to canvas or click to add
+        </p>
       </div>
 
       <ScrollArea className="flex-1">
@@ -91,7 +108,7 @@ export function BlocksPalette() {
               <button
                 onClick={() =>
                   setExpandedCategory(
-                    expandedCategory === category.name ? null : category.name
+                    expandedCategory === category.name ? null : category.name,
                   )
                 }
                 className="flex items-center gap-2 w-full px-2 py-2 rounded-lg hover:bg-secondary transition group"
@@ -99,7 +116,9 @@ export function BlocksPalette() {
                 <ChevronDown
                   className={cn(
                     "w-4 h-4 text-muted-foreground transition",
-                    expandedCategory === category.name ? "rotate-0" : "-rotate-90"
+                    expandedCategory === category.name
+                      ? "rotate-0"
+                      : "-rotate-90",
                   )}
                 />
                 <div className="text-muted-foreground group-hover:text-foreground transition">
@@ -122,13 +141,15 @@ export function BlocksPalette() {
                         "flex items-center gap-2 p-2.5 rounded-lg cursor-move transition mx-1",
                         "bg-secondary/40 hover:bg-secondary hover:border-primary/30",
                         "text-muted-foreground hover:text-foreground text-sm font-medium",
-                        "border border-transparent hover:border-primary/30 group"
+                        "border border-transparent hover:border-primary/30 group",
                       )}
                     >
                       <div className="text-muted-foreground group-hover:text-primary transition">
                         {BLOCK_ICONS[blockType]}
                       </div>
-                      <span className="capitalize">{blockType.replace("-", " ")}</span>
+                      <span className="capitalize">
+                        {blockType.replace("-", " ")}
+                      </span>
                     </div>
                   ))}
                 </div>

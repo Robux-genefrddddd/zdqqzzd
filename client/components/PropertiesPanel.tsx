@@ -9,7 +9,8 @@ import { cn } from "@/lib/utils";
 import { Palette, BoxSelect, Type } from "lucide-react";
 
 export function PropertiesPanel() {
-  const { selectedElement, getBlock, updateBlockStyle, updateBlock } = useBuilder();
+  const { selectedElement, getBlock, updateBlockStyle, updateBlock } =
+    useBuilder();
 
   const block = selectedElement ? getBlock(selectedElement.id) : null;
 
@@ -26,30 +27,39 @@ export function PropertiesPanel() {
   };
 
   const handlePropChange = (key: string, value: any) => {
-    updateBlock(selectedElement!.id, { props: { ...block.props, [key]: value } });
+    updateBlock(selectedElement!.id, {
+      props: { ...block.props, [key]: value },
+    });
   };
 
   return (
     <div className="w-80 border-l border-border bg-card/50 flex flex-col">
       <div className="px-4 py-3.5 border-b border-border/60">
-        <h2 className="text-sm font-semibold text-foreground">
-          {block.label}
-        </h2>
+        <h2 className="text-sm font-semibold text-foreground">{block.label}</h2>
         <p className="text-xs text-muted-foreground mt-0.5">{block.type}</p>
       </div>
 
       <ScrollArea className="flex-1">
         <Tabs defaultValue="design" className="w-full h-full">
           <TabsList className="w-full rounded-none border-b border-border bg-transparent p-0 justify-start">
-            <TabsTrigger value="design" className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary text-xs">
+            <TabsTrigger
+              value="design"
+              className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary text-xs"
+            >
               <Palette className="w-4 h-4 mr-1.5" />
               Design
             </TabsTrigger>
-            <TabsTrigger value="layout" className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary text-xs">
+            <TabsTrigger
+              value="layout"
+              className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary text-xs"
+            >
               <BoxSelect className="w-4 h-4 mr-1.5" />
               Layout
             </TabsTrigger>
-            <TabsTrigger value="content" className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary text-xs">
+            <TabsTrigger
+              value="content"
+              className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary text-xs"
+            >
               <Type className="w-4 h-4 mr-1.5" />
               Content
             </TabsTrigger>
@@ -58,17 +68,23 @@ export function PropertiesPanel() {
           <TabsContent value="design" className="p-4 space-y-4">
             {/* Background Color */}
             <div>
-              <Label className="text-xs font-semibold text-sidebar-foreground">Background Color</Label>
+              <Label className="text-xs font-semibold text-sidebar-foreground">
+                Background Color
+              </Label>
               <div className="flex gap-2 mt-2">
                 <input
                   type="color"
                   value={block.style.backgroundColor || "#ffffff"}
-                  onChange={(e) => handleStyleChange("backgroundColor", e.target.value)}
+                  onChange={(e) =>
+                    handleStyleChange("backgroundColor", e.target.value)
+                  }
                   className="w-12 h-10 rounded border border-border cursor-pointer"
                 />
                 <Input
                   value={block.style.backgroundColor || "#ffffff"}
-                  onChange={(e) => handleStyleChange("backgroundColor", e.target.value)}
+                  onChange={(e) =>
+                    handleStyleChange("backgroundColor", e.target.value)
+                  }
                   className="flex-1 text-xs"
                   placeholder="#ffffff"
                 />
@@ -78,7 +94,9 @@ export function PropertiesPanel() {
             {/* Text Color */}
             {(["text", "button"].includes(block.type) || block.style.color) && (
               <div>
-                <Label className="text-xs font-semibold text-sidebar-foreground">Text Color</Label>
+                <Label className="text-xs font-semibold text-sidebar-foreground">
+                  Text Color
+                </Label>
                 <div className="flex gap-2 mt-2">
                   <input
                     type="color"
@@ -99,7 +117,9 @@ export function PropertiesPanel() {
             <div>
               <Label className="text-xs font-semibold text-sidebar-foreground flex justify-between">
                 Border Radius
-                <span className="text-muted-foreground">{block.style.borderRadius || 0}px</span>
+                <span className="text-muted-foreground">
+                  {block.style.borderRadius || 0}px
+                </span>
               </Label>
               <Slider
                 value={[block.style.borderRadius || 0]}
@@ -113,7 +133,9 @@ export function PropertiesPanel() {
             {/* Shadow */}
             {block.style.shadow && (
               <div className="space-y-2">
-                <Label className="text-xs font-semibold text-sidebar-foreground">Shadow</Label>
+                <Label className="text-xs font-semibold text-sidebar-foreground">
+                  Shadow
+                </Label>
                 <div className="space-y-2 text-xs">
                   <div className="flex gap-2">
                     <div className="flex-1">
@@ -180,7 +202,9 @@ export function PropertiesPanel() {
             <div>
               <Label className="text-xs font-semibold text-sidebar-foreground flex justify-between">
                 Opacity
-                <span className="text-muted-foreground">{Math.round((block.style.opacity || 1) * 100)}%</span>
+                <span className="text-muted-foreground">
+                  {Math.round((block.style.opacity || 1) * 100)}%
+                </span>
               </Label>
               <Slider
                 value={[(block.style.opacity || 1) * 100]}
@@ -195,7 +219,9 @@ export function PropertiesPanel() {
           <TabsContent value="layout" className="p-4 space-y-4">
             {/* Padding */}
             <div>
-              <Label className="text-xs font-semibold text-sidebar-foreground">Padding</Label>
+              <Label className="text-xs font-semibold text-sidebar-foreground">
+                Padding
+              </Label>
               <div className="grid grid-cols-2 gap-2 mt-2">
                 <div>
                   <Label className="text-xs text-muted-foreground">Top</Label>
@@ -224,7 +250,9 @@ export function PropertiesPanel() {
                   />
                 </div>
                 <div>
-                  <Label className="text-xs text-muted-foreground">Bottom</Label>
+                  <Label className="text-xs text-muted-foreground">
+                    Bottom
+                  </Label>
                   <Input
                     type="number"
                     value={block.style.padding?.bottom || 0}
@@ -255,10 +283,16 @@ export function PropertiesPanel() {
             {/* Width & Height */}
             <div className="grid grid-cols-2 gap-2">
               <div>
-                <Label className="text-xs font-semibold text-sidebar-foreground">Width</Label>
+                <Label className="text-xs font-semibold text-sidebar-foreground">
+                  Width
+                </Label>
                 <Input
                   type="text"
-                  value={typeof block.style.width === "number" ? `${block.style.width}px` : block.style.width || "auto"}
+                  value={
+                    typeof block.style.width === "number"
+                      ? `${block.style.width}px`
+                      : block.style.width || "auto"
+                  }
                   onChange={(e) => {
                     const val = e.target.value;
                     if (val.endsWith("px")) {
@@ -272,10 +306,16 @@ export function PropertiesPanel() {
                 />
               </div>
               <div>
-                <Label className="text-xs font-semibold text-sidebar-foreground">Height</Label>
+                <Label className="text-xs font-semibold text-sidebar-foreground">
+                  Height
+                </Label>
                 <Input
                   type="text"
-                  value={typeof block.style.height === "number" ? `${block.style.height}px` : block.style.height || "auto"}
+                  value={
+                    typeof block.style.height === "number"
+                      ? `${block.style.height}px`
+                      : block.style.height || "auto"
+                  }
                   onChange={(e) => {
                     const val = e.target.value;
                     if (val.endsWith("px")) {
@@ -291,11 +331,15 @@ export function PropertiesPanel() {
             </div>
 
             {/* Gap (for flex/grid) */}
-            {["flex-container", "grid", "form", "list"].includes(block.type) && (
+            {["flex-container", "grid", "form", "list"].includes(
+              block.type,
+            ) && (
               <div>
                 <Label className="text-xs font-semibold text-sidebar-foreground flex justify-between">
                   Gap
-                  <span className="text-muted-foreground">{block.style.gap || 0}px</span>
+                  <span className="text-muted-foreground">
+                    {block.style.gap || 0}px
+                  </span>
                 </Label>
                 <Slider
                   value={[block.style.gap || 0]}
@@ -312,7 +356,9 @@ export function PropertiesPanel() {
             {/* Text Content */}
             {["text", "button"].includes(block.type) && (
               <div>
-                <Label className="text-xs font-semibold text-sidebar-foreground">Text</Label>
+                <Label className="text-xs font-semibold text-sidebar-foreground">
+                  Text
+                </Label>
                 <Input
                   value={block.props?.text || ""}
                   onChange={(e) => handlePropChange("text", e.target.value)}
@@ -325,10 +371,14 @@ export function PropertiesPanel() {
             {/* Placeholder */}
             {block.type === "input" && (
               <div>
-                <Label className="text-xs font-semibold text-sidebar-foreground">Placeholder</Label>
+                <Label className="text-xs font-semibold text-sidebar-foreground">
+                  Placeholder
+                </Label>
                 <Input
                   value={block.props?.placeholder || ""}
-                  onChange={(e) => handlePropChange("placeholder", e.target.value)}
+                  onChange={(e) =>
+                    handlePropChange("placeholder", e.target.value)
+                  }
                   className="mt-2"
                   placeholder="Enter placeholder text"
                 />
@@ -338,7 +388,9 @@ export function PropertiesPanel() {
             {/* Image Source */}
             {block.type === "image" && (
               <div>
-                <Label className="text-xs font-semibold text-sidebar-foreground">Image URL</Label>
+                <Label className="text-xs font-semibold text-sidebar-foreground">
+                  Image URL
+                </Label>
                 <Input
                   value={block.props?.src || ""}
                   onChange={(e) => handlePropChange("src", e.target.value)}
@@ -353,7 +405,9 @@ export function PropertiesPanel() {
               <div>
                 <Label className="text-xs font-semibold text-sidebar-foreground flex justify-between">
                   Font Size
-                  <span className="text-muted-foreground">{block.style.fontSize || 16}px</span>
+                  <span className="text-muted-foreground">
+                    {block.style.fontSize || 16}px
+                  </span>
                 </Label>
                 <Slider
                   value={[block.style.fontSize || 16]}

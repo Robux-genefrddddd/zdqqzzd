@@ -161,7 +161,9 @@ export const BLOCK_DEFAULTS: Record<BlockType, Partial<Block>> = {
       height: 200,
       borderRadius: 8,
     },
-    props: { src: "https://images.unsplash.com/photo-1618005182384-a83a8e7b9b47?w=500&h=400&fit=crop" },
+    props: {
+      src: "https://images.unsplash.com/photo-1618005182384-a83a8e7b9b47?w=500&h=400&fit=crop",
+    },
   },
   grid: {
     type: "grid",
@@ -184,7 +186,10 @@ export const BLOCK_DEFAULTS: Record<BlockType, Partial<Block>> = {
   },
 };
 
-export function createBlock(type: BlockType, overrides?: Partial<Block>): Block {
+export function createBlock(
+  type: BlockType,
+  overrides?: Partial<Block>,
+): Block {
   const defaults = BLOCK_DEFAULTS[type];
   return {
     id: generateId(),
@@ -330,7 +335,12 @@ export function blockToHTML(block: Block, indent = 0): string {
     case "grid":
     case "flex-container":
     default:
-      const tag = block.type === "section" ? "section" : block.type === "flex-container" ? "div" : block.type;
+      const tag =
+        block.type === "section"
+          ? "section"
+          : block.type === "flex-container"
+            ? "div"
+            : block.type;
       html = `${padding}<${tag}${styleAttr}>
 ${block.children.map((child) => blockToHTML(child, indent + 1)).join("\n")}
 ${padding}</${tag}>`;

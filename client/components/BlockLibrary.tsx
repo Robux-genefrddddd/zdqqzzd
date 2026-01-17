@@ -93,7 +93,9 @@ export function BlockLibrary() {
   return (
     <div className="h-full flex flex-col border-r border-border bg-sidebar">
       <div className="p-4 border-b border-border">
-        <h2 className="text-sm font-semibold text-sidebar-foreground">Blocks Library</h2>
+        <h2 className="text-sm font-semibold text-sidebar-foreground">
+          Blocks Library
+        </h2>
       </div>
 
       <ScrollArea className="flex-1">
@@ -118,11 +120,13 @@ export function BlockLibrary() {
                       "flex items-center gap-2 p-2.5 rounded-lg cursor-move transition",
                       "bg-sidebar-accent hover:bg-sidebar-accent/80 hover:text-sidebar-primary",
                       "text-sidebar-foreground text-sm font-medium",
-                      "border border-transparent hover:border-sidebar-ring/20"
+                      "border border-transparent hover:border-sidebar-ring/20",
                     )}
                   >
                     {BLOCK_ICONS[blockType]}
-                    <span className="capitalize">{blockType.replace("-", " ")}</span>
+                    <span className="capitalize">
+                      {blockType.replace("-", " ")}
+                    </span>
                   </div>
                 ))}
               </div>

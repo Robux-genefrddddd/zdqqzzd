@@ -3,7 +3,16 @@ import { Sidebar } from "@/components/Sidebar";
 import { BlocksPalette } from "@/components/BlocksPalette";
 import { Canvas } from "@/components/Canvas";
 import { PropertiesPanel } from "@/components/PropertiesPanel";
-import { Download, Save, Eye, ZoomIn, ZoomOut, Grid3x3, Maximize2, ChevronLeft } from "lucide-react";
+import {
+  Download,
+  Save,
+  Eye,
+  ZoomIn,
+  ZoomOut,
+  Grid3x3,
+  Maximize2,
+  ChevronLeft,
+} from "lucide-react";
 import { useState } from "react";
 import { canvasToDemoHTML } from "@/lib/utils-builder";
 
@@ -36,7 +45,9 @@ function BuilderContent() {
       {/* Top Navigation */}
       <div className="border-b border-border bg-card/20 backdrop-blur-sm px-8 py-3.5 flex items-center justify-between">
         <div className="flex items-center gap-3">
-          <h1 className="text-sm font-semibold text-foreground">{canvas?.name || "Untitled Project"}</h1>
+          <h1 className="text-sm font-semibold text-foreground">
+            {canvas?.name || "Untitled Project"}
+          </h1>
           <div className="text-xs text-muted-foreground">UI Editor</div>
         </div>
 
@@ -50,7 +61,9 @@ function BuilderContent() {
             >
               <ZoomOut className="w-3.5 h-3.5 text-muted-foreground hover:text-foreground" />
             </button>
-            <div className="text-xs text-muted-foreground min-w-10 text-center font-medium">{zoom}%</div>
+            <div className="text-xs text-muted-foreground min-w-10 text-center font-medium">
+              {zoom}%
+            </div>
             <button
               onClick={() => setZoom(Math.min(200, zoom + 10))}
               className="p-1 hover:bg-secondary transition rounded"

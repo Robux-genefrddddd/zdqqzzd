@@ -10,7 +10,9 @@ export default function Blocks() {
         </div>
         <div className="flex-1 flex items-center justify-center">
           <div className="text-center">
-            <p className="text-muted-foreground">Blocks library page coming soon</p>
+            <p className="text-muted-foreground">
+              Blocks library page coming soon
+            </p>
           </div>
         </div>
       </div>
