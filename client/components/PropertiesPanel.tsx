@@ -30,16 +30,16 @@ export function PropertiesPanel() {
   };
 
   return (
-    <div className="w-80 border-l border-border bg-sidebar flex flex-col">
+    <div className="w-80 border-l border-border bg-card flex flex-col">
       <div className="p-4 border-b border-border">
-        <h2 className="text-sm font-semibold text-sidebar-foreground">
+        <h2 className="text-sm font-semibold text-foreground">
           {block.label}
         </h2>
         <p className="text-xs text-muted-foreground mt-1">{block.type}</p>
       </div>
 
       <ScrollArea className="flex-1">
-        <Tabs defaultValue="design" className="w-full h-full">
+        <Tabs defaultValue="design" className="w-full h-full" defaultValue="design">
           <TabsList className="w-full rounded-none border-b border-border bg-transparent p-0">
             <TabsTrigger value="design" className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary">
               <Palette className="w-4 h-4 mr-2" />
