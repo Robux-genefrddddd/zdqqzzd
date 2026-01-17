@@ -17,6 +17,8 @@ import {
   Images,
   Columns,
   Settings,
+  Circle,
+  FrameIcon,
 } from "lucide-react";
 
 const BLOCK_CATEGORIES: {
