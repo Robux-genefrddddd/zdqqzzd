@@ -296,28 +296,31 @@ export default function Index() {
                     desc: "Export projects",
                     href: "/export",
                   },
-                ].map((item) => (
-                  <Link
-                    key={item.label}
-                    to={item.href}
-                    className="group relative bg-card border border-border rounded-lg p-4 hover:border-primary/30 transition"
-                  >
-                    <div className="space-y-2">
-                      <div className="flex items-start justify-between">
-                        <item.icon className="w-5 h-5 text-muted-foreground group-hover:text-primary transition" />
-                        <ArrowRight className="w-4 h-4 text-muted-foreground opacity-0 group-hover:opacity-100 transition" />
+                ].map((item) => {
+                  const Icon = item.icon;
+                  return (
+                    <Link
+                      key={item.label}
+                      to={item.href}
+                      className="group relative bg-card border border-border rounded-lg p-4 hover:border-primary/30 transition"
+                    >
+                      <div className="space-y-2">
+                        <div className="flex items-start justify-between">
+                          <Icon className="w-5 h-5 text-muted-foreground group-hover:text-primary transition" />
+                          <ArrowRight className="w-4 h-4 text-muted-foreground opacity-0 group-hover:opacity-100 transition" />
+                        </div>
+                        <div>
+                          <h3 className="font-semibold text-foreground text-sm group-hover:text-primary transition">
+                            {item.label}
+                          </h3>
+                          <p className="text-xs text-muted-foreground mt-1">
+                            {item.desc}
+                          </p>
+                        </div>
                       </div>
-                      <div>
-                        <h3 className="font-semibold text-foreground text-sm group-hover:text-primary transition">
-                          {item.label}
-                        </h3>
-                        <p className="text-xs text-muted-foreground mt-1">
-                          {item.desc}
-                        </p>
-                      </div>
-                    </div>
-                  </Link>
-                ))}
+                    </Link>
+                  );
+                })}
               </div>
             </div>
           </div>
