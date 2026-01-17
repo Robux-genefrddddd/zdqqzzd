@@ -34,9 +34,9 @@ function BuilderContent() {
   return (
     <div className="h-screen flex flex-col bg-background">
       {/* Top Navigation */}
-      <div className="border-b border-border bg-card/50 backdrop-blur-sm px-6 py-4 flex items-center justify-between">
-        <div className="flex items-center gap-4">
-          <h1 className="text-sm font-bold text-foreground">{canvas?.name || "Untitled Project"}</h1>
+      <div className="border-b border-border bg-card/20 backdrop-blur-sm px-8 py-3.5 flex items-center justify-between">
+        <div className="flex items-center gap-3">
+          <h1 className="text-sm font-semibold text-foreground">{canvas?.name || "Untitled Project"}</h1>
           <div className="text-xs text-muted-foreground">UI Editor</div>
         </div>
 
