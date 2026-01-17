@@ -45,26 +45,6 @@ export default function Index() {
     },
   ];
 
-  const quickActions = [
-    {
-      icon: Layout,
-      label: "New Project",
-      href: "/builder",
-      color: "from-primary to-primary/70",
-    },
-    {
-      icon: Palette,
-      label: "UI Editor",
-      href: "/builder",
-      color: "from-accent to-accent/70",
-    },
-    {
-      icon: Blocks,
-      label: "Blocks Library",
-      href: "/blocks",
-      color: "from-purple-500 to-purple-600",
-    },
-  ];
 
   return (
     <div className="flex h-screen bg-background">
