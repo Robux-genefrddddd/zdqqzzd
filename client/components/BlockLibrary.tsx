@@ -11,7 +11,7 @@ import {
   Keyboard,
   FileText,
   Menu,
-  DialogSquare,
+  Layers,
   Images,
   Grid3x3,
   Columns,
