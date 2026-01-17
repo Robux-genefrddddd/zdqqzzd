@@ -1,8 +1,9 @@
 import { useBuilder, BuilderProvider } from "@/lib/builder-context";
 import { Sidebar } from "@/components/Sidebar";
+import { BlocksPalette } from "@/components/BlocksPalette";
 import { Canvas } from "@/components/Canvas";
 import { PropertiesPanel } from "@/components/PropertiesPanel";
-import { Download, Save, Eye, ZoomIn, ZoomOut, Grid3x3, Maximize2 } from "lucide-react";
+import { Download, Save, Eye, ZoomIn, ZoomOut, Grid3x3, Maximize2, ChevronLeft } from "lucide-react";
 import { useState } from "react";
 import { canvasToDemoHTML } from "@/lib/utils-builder";
 
