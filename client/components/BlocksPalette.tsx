@@ -13,7 +13,7 @@ import {
   Type,
   Keyboard,
   FileText,
-  DialogSquare,
+  Layers,
   Images,
   Columns,
   Settings,
