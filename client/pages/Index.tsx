@@ -195,5 +195,3 @@ export default function Index() {
     </div>
   );
 }
-
-import { Blocks } from "lucide-react";
