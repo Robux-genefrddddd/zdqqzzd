@@ -109,6 +109,10 @@ export interface Block {
   style: BlockStyle;
   children: Block[];
   props?: Record<string, any>;
+  locked?: boolean;
+  hidden?: boolean;
+  isComponent?: boolean;
+  componentId?: string;
 }
 
 export interface Canvas {
@@ -128,4 +132,15 @@ export interface Canvas {
 export interface SelectedElement {
   id: string;
   type: "block";
+  parentId?: string;
+}
+
+export interface DragState {
+  isDragging: boolean;
+  startX: number;
+  startY: number;
+  currentX: number;
+  currentY: number;
+  originalX?: number;
+  originalY?: number;
 }
