@@ -78,10 +78,10 @@ export function BlocksPalette() {
   };
 
   return (
-    <div className="w-72 border-r border-border bg-card flex flex-col">
-      <div className="p-4 border-b border-border">
+    <div className="w-72 border-r border-border bg-card/50 flex flex-col">
+      <div className="px-4 py-3.5 border-b border-border/60">
         <h2 className="text-sm font-semibold text-foreground">Blocks</h2>
-        <p className="text-xs text-muted-foreground mt-0.5">Drag to canvas or click to add</p>
+        <p className="text-xs text-muted-foreground mt-1">Drag to canvas or click to add</p>
       </div>
 
       <ScrollArea className="flex-1">
