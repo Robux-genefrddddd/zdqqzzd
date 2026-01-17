@@ -3,7 +3,8 @@ import { Block } from "@/lib/types";
 import { BLOCK_DEFAULTS, createBlock } from "@/lib/utils-builder";
 import { BlockType } from "@/lib/types";
 import { cn } from "@/lib/utils";
-import { X, Copy, ChevronDown } from "lucide-react";
+import { X, Copy, Plus } from "lucide-react";
+import { ScrollArea } from "@/components/ui/scroll-area";
 
 interface BlockRendererProps {
   block: Block;
@@ -20,13 +21,6 @@ function BlockRenderer({
   onRemove,
   onDuplicate,
 }: BlockRendererProps) {
-  const styleString = Object.entries(block.style)
-    .filter(([key]) => !["backgroundColor", "borderRadius", "padding", "margin", "width", "height", "shadow", "color", "fontSize", "fontWeight", "textAlign", "lineHeight", "display", "flexDirection", "justifyContent", "alignItems", "gap", "opacity", "borderColor", "borderWidth", "minHeight"].includes(key))
-    .reduce((acc, [key, value]) => {
-      if (value === undefined || value === null) return acc;
-      return acc + `${key}: ${value}; `;
-    }, "");
-
   const style: React.CSSProperties = {
     backgroundColor: block.style.backgroundColor,
     borderRadius: block.style.borderRadius ? `${block.style.borderRadius}px` : undefined,
@@ -61,9 +55,9 @@ function BlockRenderer({
   const renderContent = () => {
     switch (block.type) {
       case "button":
-        return <button style={style}>{block.props?.text || "Button"}</button>;
+        return <button style={style} className="cursor-default">{block.props?.text || "Button"}</button>;
       case "input":
-        return <input type="text" placeholder={block.props?.placeholder || ""} style={style} />;
+        return <input type="text" placeholder={block.props?.placeholder || ""} style={style} className="cursor-default" />;
       case "text":
         return <p style={style}>{block.props?.text || "Text content"}</p>;
       case "image":
@@ -72,27 +66,14 @@ function BlockRenderer({
             src={block.props?.src || "https://images.unsplash.com/photo-1618005182384-a83a8e7b9b47?w=500&h=400&fit=crop"}
             alt="Block content"
             style={style}
+            className="object-cover"
           />
         );
-      case "header":
-      case "footer":
-      case "section":
-      case "card":
-      case "form":
-      case "navbar":
-      case "modal":
-      case "sidebar":
-      case "list":
-      case "grid":
-      case "flex-container":
       default:
         const tag = block.type === "section" ? "section" : block.type === "flex-container" ? "div" : block.type;
         return (
           <>
-            {/* @ts-ignore */}
-            {block.type === "button" ? (
-              <button style={style}>{block.props?.text || "Button"}</button>
-            ) : React.createElement(
+            {React.createElement(
               tag as any,
               { style },
               block.children.length > 0 ? (
@@ -107,8 +88,8 @@ function BlockRenderer({
                   />
                 ))
               ) : (
-                <div className="text-center py-8 text-muted-foreground text-sm">
-                  Drag blocks here or click to add
+                <div className="text-center py-4 text-muted-foreground text-xs">
+                  Empty block
                 </div>
               )
             )}
@@ -126,31 +107,24 @@ function BlockRenderer({
       }}
       className={cn(
         "relative group outline-none",
-        isSelected && "outline outline-2 outline-primary"
+        isSelected && "ring-2 ring-primary ring-offset-1 ring-offset-background rounded"
       )}
       onDragOver={(e) => {
         e.preventDefault();
         e.dataTransfer.dropEffect = "copy";
       }}
-      onDrop={(e) => {
-        e.preventDefault();
-        const blockType = e.dataTransfer.getData("blockType") as BlockType;
-        if (blockType && BLOCK_DEFAULTS[blockType]) {
-          // This would require addBlock to support parentId
-        }
-      }}
     >
       {renderContent()}
 
       {isSelected && (
-        <div className="absolute top-0 right-0 -translate-y-full flex gap-1 mb-1 opacity-0 group-hover:opacity-100 transition">
+        <div className="absolute top-1 right-1 flex gap-1 opacity-0 group-hover:opacity-100 transition">
           <button
             onClick={(e) => {
               e.stopPropagation();
               onDuplicate(block.id);
             }}
-            className="p-1 bg-primary text-primary-foreground rounded hover:bg-primary/90 transition"
-            title="Duplicate block"
+            className="p-1.5 bg-primary text-primary-foreground rounded hover:bg-primary/90 transition"
+            title="Duplicate"
           >
             <Copy className="w-4 h-4" />
           </button>
@@ -159,8 +133,8 @@ function BlockRenderer({
               e.stopPropagation();
               onRemove(block.id);
             }}
-            className="p-1 bg-destructive text-destructive-foreground rounded hover:bg-destructive/90 transition"
-            title="Remove block"
+            className="p-1.5 bg-destructive text-destructive-foreground rounded hover:bg-destructive/90 transition"
+            title="Remove"
           >
             <X className="w-4 h-4" />
           </button>
@@ -170,11 +144,19 @@ function BlockRenderer({
   );
 }
 
-export function Canvas() {
-  const { canvas, selectedElement, setSelectedElement, removeBlock, duplicateBlock } = useBuilder();
+interface CanvasProps {
+  zoom?: number;
+}
+
+export function Canvas({ zoom = 100 }: CanvasProps) {
+  const { canvas, selectedElement, setSelectedElement, removeBlock, duplicateBlock, addBlock } = useBuilder();
 
   if (!canvas) {
-    return <div className="flex items-center justify-center h-full text-muted-foreground">Loading...</div>;
+    return (
+      <div className="flex items-center justify-center h-full text-muted-foreground flex-1">
+        Loading...
+      </div>
+    );
   }
 
   const handleDrop = (e: React.DragEvent) => {
@@ -182,40 +164,54 @@ export function Canvas() {
     const blockType = e.dataTransfer.getData("blockType") as BlockType;
     if (blockType && BLOCK_DEFAULTS[blockType]) {
       const newBlock = createBlock(blockType);
-      // addBlock(newBlock);
+      addBlock(newBlock);
     }
   };
 
   return (
-    <div className="flex-1 overflow-auto bg-gradient-to-br from-background to-secondary/20 p-8">
-      <div
-        onDragOver={(e) => e.preventDefault()}
-        onDrop={handleDrop}
-        className="max-w-6xl mx-auto"
-      >
-        {canvas.blocks.length === 0 ? (
-          <div className="flex flex-col items-center justify-center h-96 rounded-xl border-2 border-dashed border-border bg-card/50">
-            <div className="text-center">
-              <ChevronDown className="w-12 h-12 text-muted-foreground/30 mx-auto mb-4" />
-              <p className="text-muted-foreground font-medium">Start by dragging blocks from the library</p>
-              <p className="text-sm text-muted-foreground/70 mt-1">or click blocks to add them to your design</p>
-            </div>
+    <div
+      onDragOver={(e) => e.preventDefault()}
+      onDrop={handleDrop}
+      className="flex-1 overflow-auto bg-gradient-to-br from-background via-background to-sidebar-accent/20"
+    >
+      <div className="h-full flex items-center justify-center p-8">
+        <div
+          style={{ transform: `scale(${zoom / 100})`, transformOrigin: "center" }}
+          className="origin-center transition-transform duration-200"
+        >
+          <div
+            className={cn(
+              "bg-card rounded-lg shadow-2xl border border-border overflow-hidden",
+              canvas.blocks.length === 0 && "min-h-96 min-w-96"
+            )}
+          >
+            {canvas.blocks.length === 0 ? (
+              <div className="flex flex-col items-center justify-center h-96 w-96 rounded-lg border-2 border-dashed border-border/50">
+                <div className="text-center">
+                  <Plus className="w-12 h-12 text-muted-foreground/30 mx-auto mb-4" />
+                  <p className="text-muted-foreground font-medium text-sm">Start building</p>
+                  <p className="text-xs text-muted-foreground/70 mt-1">Drag blocks or use the library</p>
+                </div>
+              </div>
+            ) : (
+              <div className="space-y-4 p-8">
+                {canvas.blocks.map((block) => (
+                  <BlockRenderer
+                    key={block.id}
+                    block={block}
+                    isSelected={selectedElement?.id === block.id}
+                    onSelect={(id) => setSelectedElement({ id, type: "block" })}
+                    onRemove={removeBlock}
+                    onDuplicate={duplicateBlock}
+                  />
+                ))}
+              </div>
+            )}
           </div>
-        ) : (
-          <div className="space-y-4">
-            {canvas.blocks.map((block) => (
-              <BlockRenderer
-                key={block.id}
-                block={block}
-                isSelected={selectedElement?.id === block.id}
-                onSelect={(id) => setSelectedElement({ id, type: "block" })}
-                onRemove={removeBlock}
-                onDuplicate={duplicateBlock}
-              />
-            ))}
-          </div>
-        )}
+        </div>
       </div>
     </div>
   );
 }
+
+import React from "react";
