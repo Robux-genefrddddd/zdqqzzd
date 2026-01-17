@@ -12,45 +12,45 @@
    * A different format will require also updating the theme in tailwind.config.ts.
   */
   :root {
-    /* Dark mode is the default - deeper, more professional */
-    --background: 0 0% 8%;
-    --foreground: 0 0% 92%;
+    /* Professional Dark Mode - Studio Grade */
+    --background: 0 0% 5%;
+    --foreground: 0 0% 95%;
 
-    --card: 0 0% 11%;
-    --card-foreground: 0 0% 92%;
+    --card: 0 0% 10%;
+    --card-foreground: 0 0% 94%;
 
-    --popover: 0 0% 11%;
-    --popover-foreground: 0 0% 92%;
+    --popover: 0 0% 10%;
+    --popover-foreground: 0 0% 94%;
 
-    --primary: 262 85% 62%;
+    --primary: 262 85% 65%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 0 0% 16%;
-    --secondary-foreground: 0 0% 92%;
+    --secondary: 0 0% 14%;
+    --secondary-foreground: 0 0% 90%;
 
-    --muted: 0 0% 30%;
-    --muted-foreground: 0 0% 60%;
+    --muted: 0 0% 28%;
+    --muted-foreground: 0 0% 55%;
 
-    --accent: 262 85% 62%;
+    --accent: 262 85% 65%;
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 0 0% 18%;
-    --input: 0 0% 13%;
-    --ring: 262 85% 62%;
+    --border: 0 0% 16%;
+    --input: 0 0% 12%;
+    --ring: 262 85% 65%;
 
     --radius: 0.5rem;
 
-    --sidebar-background: 0 0% 9%;
-    --sidebar-foreground: 0 0% 88%;
-    --sidebar-primary: 262 85% 62%;
+    --sidebar-background: 0 0% 7%;
+    --sidebar-foreground: 0 0% 93%;
+    --sidebar-primary: 262 85% 65%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 0 0% 16%;
-    --sidebar-accent-foreground: 0 0% 88%;
-    --sidebar-border: 0 0% 16%;
-    --sidebar-ring: 262 85% 62%;
+    --sidebar-accent: 0 0% 18%;
+    --sidebar-accent-foreground: 0 0% 86%;
+    --sidebar-border: 0 0% 14%;
+    --sidebar-ring: 262 85% 65%;
   }
 
   .light {
