@@ -64,6 +64,9 @@ export function BuilderProvider({ children }: { children: React.ReactNode }) {
 
   const [selectedElement, setSelectedElement] =
     useState<SelectedElement | null>(null);
+  const [selectedElements, setSelectedElements] = useState<SelectedElement[]>(
+    [],
+  );
 
   const getBlock = useCallback(
     (blockId: string): Block | null => {
