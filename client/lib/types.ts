@@ -13,14 +13,53 @@ export type BlockType =
   | "text"
   | "image"
   | "grid"
-  | "flex-container";
+  | "flex-container"
+  | "frame"
+  | "rectangle"
+  | "circle"
+  | "shape-text";
+
+export type ToolType =
+  | "select"
+  | "rectangle"
+  | "circle"
+  | "text"
+  | "line"
+  | "frame";
 
 export interface ColorStop {
   color: string;
   position: number;
 }
 
+export interface Stroke {
+  width?: number;
+  color?: string;
+  opacity?: number;
+  position?: "inside" | "center" | "outside";
+  dashArray?: number[];
+}
+
+export interface Shadow {
+  x: number;
+  y: number;
+  blur: number;
+  spread: number;
+  color: string;
+  opacity: number;
+  enabled?: boolean;
+}
+
 export interface BlockStyle {
+  // Layout Positioning (Figma-style absolute positioning)
+  x?: number;
+  y?: number;
+  width?: number;
+  height?: number;
+  rotation?: number;
+  opacity?: number;
+
+  // Fill & Background
   backgroundColor?: string;
   backgroundGradient?: {
     type: "linear" | "radial";
@@ -28,33 +67,39 @@ export interface BlockStyle {
     colors: ColorStop[];
   };
   backgroundImage?: string;
+
+  // Stroke / Border
+  stroke?: Stroke;
   borderRadius?: number;
-  padding?: { top: number; right: number; bottom: number; left: number };
-  margin?: { top: number; right: number; bottom: number; left: number };
-  width?: number | "auto" | "100%";
-  height?: number | "auto";
-  minHeight?: number;
-  shadow?: {
-    x: number;
-    y: number;
-    blur: number;
-    spread: number;
-    color: string;
-    opacity: number;
+  borderRadiusPerCorner?: {
+    topLeft?: number;
+    topRight?: number;
+    bottomRight?: number;
+    bottomLeft?: number;
   };
-  opacity?: number;
-  borderColor?: string;
-  borderWidth?: number;
+
+  // Shadow & Effects
+  shadow?: Shadow;
+  shadows?: Shadow[];
+
+  // Text Properties
   color?: string;
   fontSize?: number;
   fontWeight?: "normal" | "medium" | "semibold" | "bold";
   textAlign?: "left" | "center" | "right";
   lineHeight?: number;
+
+  // Flex & Auto-layout
   display?: "flex" | "grid" | "block";
   flexDirection?: "row" | "column";
   justifyContent?: string;
   alignItems?: string;
   gap?: number;
+  padding?: { top: number; right: number; bottom: number; left: number };
+  margin?: { top: number; right: number; bottom: number; left: number };
+
+  // Legacy (compatibility)
+  minHeight?: number;
 }
 
 export interface Block {
@@ -64,6 +109,10 @@ export interface Block {
   style: BlockStyle;
   children: Block[];
   props?: Record<string, any>;
+  locked?: boolean;
+  hidden?: boolean;
+  isComponent?: boolean;
+  componentId?: string;
 }
 
 export interface Canvas {
@@ -83,4 +132,15 @@ export interface Canvas {
 export interface SelectedElement {
   id: string;
   type: "block";
+  parentId?: string;
+}
+
+export interface DragState {
+  isDragging: boolean;
+  startX: number;
+  startY: number;
+  currentX: number;
+  currentY: number;
+  originalX?: number;
+  originalY?: number;
 }

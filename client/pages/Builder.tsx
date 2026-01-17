@@ -1,8 +1,9 @@
 import { useBuilder, BuilderProvider } from "@/lib/builder-context";
 import { Sidebar } from "@/components/Sidebar";
-import { BlocksPalette } from "@/components/BlocksPalette";
-import { Canvas } from "@/components/Canvas";
+import { CanvasV2 } from "@/components/CanvasV2";
 import { PropertiesPanel } from "@/components/PropertiesPanel";
+import { Toolbar } from "@/components/Toolbar";
+import { LayersPanel } from "@/components/LayersPanel";
 import {
   Download,
   Save,
@@ -11,14 +12,15 @@ import {
   ZoomOut,
   Grid3x3,
   Maximize2,
-  ChevronLeft,
 } from "lucide-react";
 import { useState } from "react";
 import { canvasToDemoHTML } from "@/lib/utils-builder";
+import { ToolType } from "@/lib/types";
 
 function BuilderContent() {
   const { canvas } = useBuilder();
   const [zoom, setZoom] = useState(100);
+  const [currentTool, setCurrentTool] = useState<ToolType>("select");
 
   const handleExportHTML = () => {
     if (!canvas) return;
@@ -52,20 +54,23 @@ function BuilderContent() {
         </div>
 
         <div className="flex items-center gap-3">
+          {/* Tool Bar */}
+          <Toolbar currentTool={currentTool} setCurrentTool={setCurrentTool} />
+
           {/* Zoom Controls */}
           <div className="flex items-center gap-1.5 bg-secondary/30 border border-border rounded-md p-1.5">
             <button
-              onClick={() => setZoom(Math.max(50, zoom - 10))}
+              onClick={() => setZoom(Math.max(10, zoom - 10))}
               className="p-1 hover:bg-secondary transition rounded"
               title="Zoom out"
             >
               <ZoomOut className="w-3.5 h-3.5 text-muted-foreground hover:text-foreground" />
             </button>
-            <div className="text-xs text-muted-foreground min-w-10 text-center font-medium">
-              {zoom}%
+            <div className="text-xs text-muted-foreground min-w-12 text-center font-medium">
+              {zoom.toFixed(0)}%
             </div>
             <button
-              onClick={() => setZoom(Math.min(200, zoom + 10))}
+              onClick={() => setZoom(Math.min(400, zoom + 10))}
               className="p-1 hover:bg-secondary transition rounded"
               title="Zoom in"
             >
@@ -75,25 +80,9 @@ function BuilderContent() {
             <button
               onClick={() => setZoom(100)}
               className="p-1 hover:bg-secondary transition rounded text-xs text-muted-foreground hover:text-foreground font-medium"
-              title="Reset zoom"
+              title="Reset zoom (100%)"
             >
               ↺
-            </button>
-          </div>
-
-          {/* View Controls */}
-          <div className="flex items-center gap-1.5 bg-secondary/30 border border-border rounded-md p-1.5">
-            <button
-              className="p-1 hover:bg-secondary transition rounded text-muted-foreground hover:text-foreground"
-              title="Toggle grid"
-            >
-              <Grid3x3 className="w-3.5 h-3.5" />
-            </button>
-            <button
-              className="p-1 hover:bg-secondary transition rounded text-muted-foreground hover:text-foreground"
-              title="Fullscreen"
-            >
-              <Maximize2 className="w-3.5 h-3.5" />
             </button>
           </div>
 
@@ -123,18 +112,18 @@ function BuilderContent() {
 
       {/* Main Layout */}
       <div className="flex flex-1 overflow-hidden">
-        {/* Left Panel - Blocks Palette */}
-        <div className="hidden md:flex md:w-72 md:flex-col border-r border-border">
-          <BlocksPalette />
+        {/* Left Panel - Layers */}
+        <div className="hidden md:flex md:w-64 md:flex-col border-r border-border bg-card/30">
+          <LayersPanel />
         </div>
 
         {/* Center Canvas - Main */}
         <div className="flex-1 flex overflow-hidden">
-          <Canvas zoom={zoom} />
+          <CanvasV2 currentTool={currentTool} zoom={zoom} setZoom={setZoom} />
         </div>
 
         {/* Right Panel - Properties */}
-        <div className="hidden xl:flex xl:w-80 xl:flex-col border-l border-border">
+        <div className="hidden lg:flex lg:w-72 lg:flex-col border-l border-border bg-card/30">
           <PropertiesPanel />
         </div>
       </div>

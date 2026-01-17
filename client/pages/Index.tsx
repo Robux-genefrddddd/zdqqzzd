@@ -9,7 +9,8 @@ import {
   Grid,
   Layout,
   Palette,
-  Blocks,
+  Blocks as BlocksIcon,
+  FileJson,
 } from "lucide-react";
 
 export default function Index() {
@@ -44,27 +45,6 @@ export default function Index() {
     },
   ];
 
-  const quickActions = [
-    {
-      icon: Layout,
-      label: "New Project",
-      href: "/builder",
-      color: "from-primary to-primary/70",
-    },
-    {
-      icon: Palette,
-      label: "UI Editor",
-      href: "/builder",
-      color: "from-accent to-accent/70",
-    },
-    {
-      icon: Blocks,
-      label: "Blocks Library",
-      href: "/blocks",
-      color: "from-purple-500 to-purple-600",
-    },
-  ];
-
   return (
     <div className="flex h-screen bg-background">
       {/* Sidebar */}
@@ -73,12 +53,10 @@ export default function Index() {
       {/* Main Content */}
       <div className="flex-1 flex flex-col overflow-hidden">
         {/* Header */}
-        <div className="border-b border-border bg-card/30 backdrop-blur-sm px-8 py-4">
+        <div className="border-b border-border bg-card/40 backdrop-blur-sm px-8 py-4">
           <div className="flex items-center justify-between">
             <div>
-              <h1 className="text-xl font-semibold text-foreground">
-                Dashboard
-              </h1>
+              <h1 className="text-lg font-bold text-foreground">Dashboard</h1>
               <p className="text-xs text-muted-foreground mt-0.5">
                 Welcome back to Creator Studio
               </p>
@@ -98,7 +76,7 @@ export default function Index() {
           <div className="p-8 max-w-7xl mx-auto w-full space-y-8">
             {/* Quick Actions */}
             <div>
-              <h2 className="text-sm font-semibold text-foreground mb-3 uppercase tracking-wide">
+              <h2 className="text-xs font-semibold text-muted-foreground mb-3 uppercase tracking-widest">
                 Quick Start
               </h2>
               <div className="grid grid-cols-3 gap-3">
@@ -117,21 +95,23 @@ export default function Index() {
                     <Link
                       key={idx}
                       to={action.href}
-                      className={`group flex items-center gap-3 px-4 py-3 rounded-lg transition border ${
+                      className={`group flex items-center gap-3 px-4 py-3 rounded-lg transition border text-sm font-medium ${
                         action.primary
-                          ? "bg-primary/10 border-primary/30 hover:border-primary/50 hover:bg-primary/15"
-                          : "bg-card border-border hover:border-primary/30 hover:bg-card/80"
+                          ? "bg-primary/15 border-primary/40 hover:border-primary/60 hover:bg-primary/20"
+                          : "bg-card/50 border-border hover:border-primary/30 hover:bg-card/80"
                       }`}
                     >
                       <Icon
                         className={`w-5 h-5 ${action.primary ? "text-primary" : "text-muted-foreground group-hover:text-primary"} transition`}
                       />
                       <span
-                        className={`text-sm font-medium ${action.primary ? "text-primary" : "text-sidebar-accent-foreground group-hover:text-foreground"} transition`}
+                        className={
+                          action.primary ? "text-primary" : "text-foreground"
+                        }
                       >
                         {action.label}
                       </span>
-                      <ArrowRight className="w-4 h-4 text-muted-foreground group-hover:text-primary opacity-0 group-hover:opacity-100 transition" />
+                      <ArrowRight className="w-4 h-4 text-muted-foreground group-hover:text-primary opacity-0 group-hover:opacity-100 transition ml-auto" />
                     </Link>
                   );
                 })}
@@ -140,63 +120,63 @@ export default function Index() {
 
             {/* Stats Row */}
             <div>
-              <h2 className="text-sm font-semibold text-foreground mb-3 uppercase tracking-wide">
+              <h2 className="text-xs font-semibold text-muted-foreground mb-3 uppercase tracking-widest">
                 Statistics
               </h2>
               <div className="grid grid-cols-3 gap-4">
-                <div className="bg-card border border-border rounded-lg p-4 hover:border-primary/30 transition">
+                <div className="bg-card border border-border rounded-lg p-5 hover:border-primary/30 transition group">
                   <div className="flex items-start justify-between">
-                    <div>
+                    <div className="flex-1">
                       <p className="text-xs text-muted-foreground font-medium">
                         Total Projects
                       </p>
-                      <p className="text-2xl font-semibold text-foreground mt-2">
+                      <p className="text-3xl font-bold text-foreground mt-2">
                         12
                       </p>
-                      <p className="text-xs text-muted-foreground mt-1">
+                      <p className="text-xs text-muted-foreground mt-2">
                         +2 this month
                       </p>
                     </div>
-                    <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
-                      <Zap className="w-5 h-5 text-primary" />
+                    <div className="w-12 h-12 rounded-lg bg-primary/15 flex items-center justify-center">
+                      <Zap className="w-6 h-6 text-primary" />
                     </div>
                   </div>
                 </div>
 
-                <div className="bg-card border border-border rounded-lg p-4 hover:border-primary/30 transition">
+                <div className="bg-card border border-border rounded-lg p-5 hover:border-primary/30 transition group">
                   <div className="flex items-start justify-between">
-                    <div>
+                    <div className="flex-1">
                       <p className="text-xs text-muted-foreground font-medium">
                         Active Exports
                       </p>
-                      <p className="text-2xl font-semibold text-foreground mt-2">
+                      <p className="text-3xl font-bold text-foreground mt-2">
                         5
                       </p>
-                      <p className="text-xs text-muted-foreground mt-1">
+                      <p className="text-xs text-muted-foreground mt-2">
                         Ready to deploy
                       </p>
                     </div>
-                    <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
-                      <ArrowRight className="w-5 h-5 text-primary" />
+                    <div className="w-12 h-12 rounded-lg bg-primary/15 flex items-center justify-center">
+                      <ArrowRight className="w-6 h-6 text-primary" />
                     </div>
                   </div>
                 </div>
 
-                <div className="bg-card border border-border rounded-lg p-4 hover:border-primary/30 transition">
+                <div className="bg-card border border-border rounded-lg p-5 hover:border-primary/30 transition group">
                   <div className="flex items-start justify-between">
-                    <div>
+                    <div className="flex-1">
                       <p className="text-xs text-muted-foreground font-medium">
-                        This Month
+                        Creation Time
                       </p>
-                      <p className="text-2xl font-semibold text-foreground mt-2">
+                      <p className="text-3xl font-bold text-foreground mt-2">
                         48hrs
                       </p>
-                      <p className="text-xs text-muted-foreground mt-1">
-                        Creation time
+                      <p className="text-xs text-muted-foreground mt-2">
+                        This month
                       </p>
                     </div>
-                    <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
-                      <Clock className="w-5 h-5 text-primary" />
+                    <div className="w-12 h-12 rounded-lg bg-primary/15 flex items-center justify-center">
+                      <Clock className="w-6 h-6 text-primary" />
                     </div>
                   </div>
                 </div>
@@ -206,51 +186,60 @@ export default function Index() {
             {/* Recent Projects */}
             <div>
               <div className="flex items-center justify-between mb-4">
-                <h2 className="text-sm font-semibold text-foreground uppercase tracking-wide">
+                <h2 className="text-xs font-semibold text-muted-foreground uppercase tracking-widest">
                   Recent Projects
                 </h2>
                 <Link
                   to="/builder"
-                  className="text-xs text-primary hover:text-primary/80 font-medium transition"
+                  className="text-xs text-primary hover:text-primary/80 font-medium transition flex items-center gap-1"
                 >
-                  View All →
+                  View All <ArrowRight className="w-3 h-3" />
                 </Link>
               </div>
 
-              <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+              <div className="grid grid-cols-2 gap-4">
                 {projects.map((project) => (
                   <Link
                     key={project.id}
                     to="/builder"
-                    className="group bg-card border border-border rounded-lg overflow-hidden hover:border-primary/30 hover:bg-card/80 transition"
+                    className="group bg-card border border-border rounded-lg overflow-hidden hover:border-primary/30 transition"
                   >
-                    {/* Thumbnail */}
-                    <div className="w-full aspect-video bg-gradient-to-br from-secondary to-secondary/50 flex items-center justify-center border-b border-border group-hover:from-secondary group-hover:to-secondary/40 transition">
-                      <div className="text-center">
-                        <Palette className="w-8 h-8 text-muted-foreground/40 mx-auto mb-2" />
-                        <p className="text-xs text-muted-foreground/60 font-medium">
-                          Design Preview
-                        </p>
+                    <div className="p-4 space-y-3">
+                      <div className="flex items-start justify-between">
+                        <div className="flex-1">
+                          <h3 className="font-semibold text-foreground text-sm group-hover:text-primary transition line-clamp-1">
+                            {project.name}
+                          </h3>
+                          <p className="text-xs text-muted-foreground mt-1">
+                            Updated {project.updated}
+                          </p>
+                        </div>
                       </div>
-                    </div>
 
-                    {/* Info */}
-                    <div className="p-3">
-                      <h3 className="font-medium text-foreground text-sm group-hover:text-primary transition line-clamp-1">
-                        {project.name}
-                      </h3>
-
-                      <div className="mt-2 space-y-1 text-xs text-muted-foreground">
-                        <p className="line-clamp-1">
-                          Updated {project.updated}
-                        </p>
-                        <div className="flex items-center gap-2 pt-1 border-t border-border">
-                          <span
-                            className={`inline-block w-2 h-2 rounded-full ${project.status === "active" ? "bg-green-500/80" : "bg-yellow-500/80"}`}
-                          />
-                          <span className="capitalize font-medium">
-                            {project.status}
+                      <div className="space-y-2">
+                        <div className="flex items-center justify-between text-xs">
+                          <span className="text-muted-foreground">
+                            Progress
                           </span>
+                          <span
+                            className={
+                              project.status === "active"
+                                ? "text-green-400"
+                                : "text-yellow-400"
+                            }
+                          >
+                            {project.status === "active" ? "Active" : "Draft"}
+                          </span>
+                        </div>
+                        <div className="w-full h-1.5 bg-secondary rounded-full overflow-hidden">
+                          <div
+                            className={`h-full rounded-full transition-all duration-300 ${
+                              project.status === "active"
+                                ? "bg-green-500"
+                                : "bg-yellow-500"
+                            }`}
+                            style={{ width: `${Math.random() * 60 + 40}%` }}
+                          />
                         </div>
                       </div>
                     </div>
@@ -259,36 +248,72 @@ export default function Index() {
               </div>
             </div>
 
-            {/* Templates Section */}
+            {/* Quick Access */}
             <div>
-              <h2 className="text-sm font-semibold text-foreground mb-4 uppercase tracking-wide">
-                Starter Templates
+              <h2 className="text-xs font-semibold text-muted-foreground mb-4 uppercase tracking-widest">
+                Quick Access
               </h2>
               <div className="grid grid-cols-3 gap-4">
                 {[
-                  { name: "E-Commerce", icon: Layout },
-                  { name: "Admin Dashboard", icon: BarChart3 },
-                  { name: "Landing Page", icon: Palette },
-                ].map((template) => (
-                  <button
-                    key={template.name}
-                    className="group relative bg-card border border-border rounded-lg p-5 hover:border-primary/30 hover:bg-card/80 transition text-left"
-                  >
-                    <div className="flex items-start justify-between mb-3">
-                      <template.icon className="w-6 h-6 text-muted-foreground group-hover:text-primary transition" />
-                      <ArrowRight className="w-4 h-4 text-muted-foreground opacity-0 group-hover:opacity-100 transition" />
-                    </div>
-                    <h3 className="font-medium text-foreground text-sm group-hover:text-primary transition">
-                      {template.name}
-                    </h3>
-                    <p className="text-xs text-muted-foreground mt-1">
-                      Start from a professional template
-                    </p>
-                  </button>
-                ))}
+                  {
+                    icon: BlocksIcon,
+                    label: "Blocks",
+                    desc: "Component library",
+                    href: "/blocks",
+                  },
+                  {
+                    icon: Palette,
+                    label: "Components",
+                    desc: "Custom components",
+                    href: "/components",
+                  },
+                  {
+                    icon: FileJson,
+                    label: "Export",
+                    desc: "Export projects",
+                    href: "/export",
+                  },
+                ].map((item) => {
+                  const Icon = item.icon;
+                  return (
+                    <Link
+                      key={item.label}
+                      to={item.href}
+                      className="group relative bg-card border border-border rounded-lg p-4 hover:border-primary/30 transition"
+                    >
+                      <div className="space-y-2">
+                        <div className="flex items-start justify-between">
+                          <Icon className="w-5 h-5 text-muted-foreground group-hover:text-primary transition" />
+                          <ArrowRight className="w-4 h-4 text-muted-foreground opacity-0 group-hover:opacity-100 transition" />
+                        </div>
+                        <div>
+                          <h3 className="font-semibold text-foreground text-sm group-hover:text-primary transition">
+                            {item.label}
+                          </h3>
+                          <p className="text-xs text-muted-foreground mt-1">
+                            {item.desc}
+                          </p>
+                        </div>
+                      </div>
+                    </Link>
+                  );
+                })}
               </div>
             </div>
           </div>
+        </div>
+
+        {/* Footer */}
+        <div className="border-t border-border bg-card/20 px-8 py-3 flex items-center justify-between">
+          <p className="text-xs text-muted-foreground">
+            © 2024 Creator Studio. All rights reserved.
+          </p>
+          <img
+            src="https://i.ibb.co/B531Dsh6/roblox-logo-roblox-symbol-meaning-history-and-evolution-3-removebg-preview.png"
+            alt="Powered by Roblox"
+            className="h-3 opacity-40 hover:opacity-60 transition"
+            title="Powered by Roblox"
+          />
         </div>
       </div>
     </div>

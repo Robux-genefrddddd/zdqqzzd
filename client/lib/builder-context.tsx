@@ -5,16 +5,21 @@ import { generateId } from "./utils";
 interface BuilderContextType {
   canvas: Canvas | null;
   selectedElement: SelectedElement | null;
+  selectedElements: SelectedElement[];
   setCanvas: (canvas: Canvas) => void;
   setSelectedElement: (element: SelectedElement | null) => void;
+  setSelectedElements: (elements: SelectedElement[]) => void;
   addBlock: (block: Block, parentId?: string) => void;
   removeBlock: (blockId: string) => void;
   updateBlock: (blockId: string, updates: Partial<Block>) => void;
   updateBlockStyle: (blockId: string, style: Partial<BlockStyle>) => void;
+  updateBlocksStyle: (blockIds: string[], style: Partial<BlockStyle>) => void;
   duplicateBlock: (blockId: string) => void;
   getBlock: (blockId: string) => Block | null;
   getAllBlocks: (blocks?: Block[]) => Block[];
   moveBlock: (blockId: string, direction: "up" | "down") => void;
+  toggleBlockLock: (blockId: string) => void;
+  toggleBlockVisibility: (blockId: string) => void;
 }
 
 const BuilderContext = createContext<BuilderContextType | undefined>(undefined);
@@ -59,6 +64,9 @@ export function BuilderProvider({ children }: { children: React.ReactNode }) {
 
   const [selectedElement, setSelectedElement] =
     useState<SelectedElement | null>(null);
+  const [selectedElements, setSelectedElements] = useState<SelectedElement[]>(
+    [],
+  );
 
   const getBlock = useCallback(
     (blockId: string): Block | null => {
@@ -236,21 +244,90 @@ export function BuilderProvider({ children }: { children: React.ReactNode }) {
     [canvas],
   );
 
+  const updateBlocksStyle = useCallback(
+    (blockIds: string[], style: Partial<BlockStyle>) => {
+      if (!canvas) return;
+
+      const updateMultiple = (blocks: Block[]): void => {
+        for (const block of blocks) {
+          if (blockIds.includes(block.id)) {
+            block.style = { ...block.style, ...style };
+          }
+          updateMultiple(block.children);
+        }
+      };
+
+      const newBlocks = [...canvas.blocks];
+      updateMultiple(newBlocks);
+      setCanvas({ ...canvas, blocks: newBlocks });
+    },
+    [canvas],
+  );
+
+  const toggleBlockLock = useCallback(
+    (blockId: string) => {
+      if (!canvas) return;
+
+      const toggle = (blocks: Block[]): boolean => {
+        for (const block of blocks) {
+          if (block.id === blockId) {
+            block.locked = !block.locked;
+            return true;
+          }
+          if (toggle(block.children)) return true;
+        }
+        return false;
+      };
+
+      const newBlocks = [...canvas.blocks];
+      toggle(newBlocks);
+      setCanvas({ ...canvas, blocks: newBlocks });
+    },
+    [canvas],
+  );
+
+  const toggleBlockVisibility = useCallback(
+    (blockId: string) => {
+      if (!canvas) return;
+
+      const toggle = (blocks: Block[]): boolean => {
+        for (const block of blocks) {
+          if (block.id === blockId) {
+            block.hidden = !block.hidden;
+            return true;
+          }
+          if (toggle(block.children)) return true;
+        }
+        return false;
+      };
+
+      const newBlocks = [...canvas.blocks];
+      toggle(newBlocks);
+      setCanvas({ ...canvas, blocks: newBlocks });
+    },
+    [canvas],
+  );
+
   return (
     <BuilderContext.Provider
       value={{
         canvas,
         selectedElement,
+        selectedElements,
         setCanvas,
         setSelectedElement,
+        setSelectedElements,
         addBlock,
         removeBlock,
         updateBlock,
         updateBlockStyle,
+        updateBlocksStyle,
         duplicateBlock,
         getBlock,
         getAllBlocks,
         moveBlock,
+        toggleBlockLock,
+        toggleBlockVisibility,
       }}
     >
       {children}

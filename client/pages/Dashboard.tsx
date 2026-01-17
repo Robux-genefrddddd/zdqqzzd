@@ -1,17 +1,337 @@
 import { Sidebar } from "@/components/Sidebar";
+import { Link } from "react-router-dom";
+import {
+  Plus,
+  Zap,
+  ArrowRight,
+  BarChart3,
+  Clock,
+  Grid,
+  Layout,
+  Palette,
+  Blocks as BlocksIcon,
+  TrendingUp,
+  FileJson,
+  Eye,
+} from "lucide-react";
+import { cn } from "@/lib/utils";
 
 export default function Dashboard() {
+  const projects = [
+    {
+      id: 1,
+      name: "E-Commerce UI Kit",
+      updated: "2 hours ago",
+      status: "active",
+      progress: 85,
+    },
+    {
+      id: 2,
+      name: "Admin Dashboard",
+      updated: "12 hours ago",
+      status: "active",
+      progress: 60,
+    },
+    {
+      id: 3,
+      name: "Landing Page Design",
+      updated: "2 days ago",
+      status: "draft",
+      progress: 40,
+    },
+    {
+      id: 4,
+      name: "Mobile App Interface",
+      updated: "5 days ago",
+      status: "active",
+      progress: 100,
+    },
+  ];
+
+  const stats = [
+    {
+      label: "Total Projects",
+      value: "12",
+      change: "+2 this month",
+      icon: BarChart3,
+      color: "from-primary/20 to-primary/5",
+    },
+    {
+      label: "Active Exports",
+      value: "5",
+      change: "Ready to deploy",
+      icon: FileJson,
+      color: "from-accent/20 to-accent/5",
+    },
+    {
+      label: "Creation Time",
+      value: "48hrs",
+      change: "This month",
+      icon: Clock,
+      color: "from-purple-500/20 to-purple-500/5",
+    },
+  ];
+
   return (
     <div className="flex h-screen bg-background">
       <Sidebar />
       <div className="flex-1 flex flex-col overflow-hidden">
-        <div className="border-b border-border bg-card/50 backdrop-blur-sm px-8 py-6">
-          <h1 className="text-2xl font-bold text-foreground">Dashboard</h1>
-        </div>
-        <div className="flex-1 flex items-center justify-center">
-          <div className="text-center">
-            <p className="text-muted-foreground">Dashboard page coming soon</p>
+        {/* Header */}
+        <div className="border-b border-border bg-card/40 backdrop-blur-sm px-8 py-4">
+          <div className="flex items-center justify-between">
+            <div>
+              <h1 className="text-lg font-bold text-foreground">Dashboard</h1>
+              <p className="text-xs text-muted-foreground mt-0.5">
+                Welcome back to Creator Studio
+              </p>
+            </div>
+            <Link
+              to="/builder"
+              className="px-4 py-2 rounded-md bg-primary text-primary-foreground hover:bg-primary/90 transition font-medium text-sm flex items-center gap-2 group"
+            >
+              <Plus className="w-4 h-4 group-hover:scale-110 transition" />
+              New Project
+            </Link>
           </div>
+        </div>
+
+        {/* Main Content */}
+        <div className="flex-1 overflow-auto">
+          <div className="p-8 max-w-7xl mx-auto w-full space-y-8">
+            {/* Quick Start */}
+            <div>
+              <h2 className="text-xs font-semibold text-muted-foreground mb-3 uppercase tracking-widest">
+                Quick Start
+              </h2>
+              <div className="grid grid-cols-3 gap-3">
+                {[
+                  {
+                    icon: Layout,
+                    label: "New Project",
+                    href: "/builder",
+                    primary: true,
+                  },
+                  { icon: Palette, label: "UI Editor", href: "/builder" },
+                  { icon: Grid, label: "Block Library", href: "/blocks" },
+                ].map((action, idx) => {
+                  const Icon = action.icon;
+                  return (
+                    <Link
+                      key={idx}
+                      to={action.href}
+                      className={cn(
+                        "group flex items-center gap-3 px-4 py-3 rounded-lg transition duration-200",
+                        "border text-sm font-medium",
+                        action.primary
+                          ? "bg-primary/15 border-primary/40 hover:border-primary/60 hover:bg-primary/20"
+                          : "bg-card/50 border-border hover:border-primary/30 hover:bg-card/80",
+                      )}
+                    >
+                      <Icon
+                        className={cn(
+                          "w-5 h-5",
+                          action.primary
+                            ? "text-primary"
+                            : "text-muted-foreground group-hover:text-primary",
+                        )}
+                      />
+                      <span
+                        className={
+                          action.primary ? "text-primary" : "text-foreground"
+                        }
+                      >
+                        {action.label}
+                      </span>
+                      <ArrowRight className="w-4 h-4 text-muted-foreground group-hover:text-primary opacity-0 group-hover:opacity-100 transition ml-auto" />
+                    </Link>
+                  );
+                })}
+              </div>
+            </div>
+
+            {/* Statistics */}
+            <div>
+              <h2 className="text-xs font-semibold text-muted-foreground mb-3 uppercase tracking-widest">
+                Statistics
+              </h2>
+              <div className="grid grid-cols-3 gap-4">
+                {stats.map((stat) => {
+                  const Icon = stat.icon;
+                  return (
+                    <div
+                      key={stat.label}
+                      className="bg-card border border-border rounded-lg p-5 hover:border-primary/30 transition group"
+                    >
+                      <div className="flex items-start justify-between">
+                        <div className="flex-1">
+                          <p className="text-xs text-muted-foreground font-medium">
+                            {stat.label}
+                          </p>
+                          <p className="text-3xl font-bold text-foreground mt-2">
+                            {stat.value}
+                          </p>
+                          <p className="text-xs text-muted-foreground mt-2">
+                            {stat.change}
+                          </p>
+                        </div>
+                        <div
+                          className={cn(
+                            "w-12 h-12 rounded-lg flex items-center justify-center",
+                            "bg-gradient-to-br",
+                            stat.color,
+                          )}
+                        >
+                          <Icon className="w-6 h-6 text-muted-foreground group-hover:text-primary transition" />
+                        </div>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+
+            {/* Recent Projects */}
+            <div>
+              <div className="flex items-center justify-between mb-4">
+                <h2 className="text-xs font-semibold text-muted-foreground uppercase tracking-widest">
+                  Recent Projects
+                </h2>
+                <Link
+                  to="/builder"
+                  className="text-xs text-primary hover:text-primary/80 font-medium transition flex items-center gap-1"
+                >
+                  View All <ArrowRight className="w-3 h-3" />
+                </Link>
+              </div>
+
+              <div className="grid grid-cols-2 gap-4">
+                {projects.map((project) => (
+                  <Link
+                    key={project.id}
+                    to="/builder"
+                    className="group bg-card border border-border rounded-lg overflow-hidden hover:border-primary/30 transition"
+                  >
+                    <div className="p-4 space-y-3">
+                      <div className="flex items-start justify-between">
+                        <div className="flex-1">
+                          <h3 className="font-semibold text-foreground text-sm group-hover:text-primary transition line-clamp-1">
+                            {project.name}
+                          </h3>
+                          <p className="text-xs text-muted-foreground mt-1">
+                            Updated {project.updated}
+                          </p>
+                        </div>
+                        <div
+                          className={cn(
+                            "w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold",
+                            project.status === "active"
+                              ? "bg-green-500/20 text-green-400"
+                              : "bg-yellow-500/20 text-yellow-400",
+                          )}
+                        >
+                          {project.progress}%
+                        </div>
+                      </div>
+
+                      <div className="space-y-2">
+                        <div className="flex items-center justify-between text-xs">
+                          <span className="text-muted-foreground">
+                            Progress
+                          </span>
+                          <span
+                            className={
+                              project.status === "active"
+                                ? "text-green-400"
+                                : "text-yellow-400"
+                            }
+                          >
+                            {project.status === "active" ? "Active" : "Draft"}
+                          </span>
+                        </div>
+                        <div className="w-full h-1.5 bg-secondary rounded-full overflow-hidden">
+                          <div
+                            className={cn(
+                              "h-full rounded-full transition-all duration-300",
+                              project.status === "active"
+                                ? "bg-green-500"
+                                : "bg-yellow-500",
+                            )}
+                            style={{ width: `${project.progress}%` }}
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </Link>
+                ))}
+              </div>
+            </div>
+
+            {/* Quick Access */}
+            <div>
+              <h2 className="text-xs font-semibold text-muted-foreground mb-4 uppercase tracking-widest">
+                Quick Access
+              </h2>
+              <div className="grid grid-cols-3 gap-4">
+                {[
+                  {
+                    icon: BlocksIcon,
+                    label: "Blocks",
+                    desc: "Component library",
+                    href: "/blocks",
+                  },
+                  {
+                    icon: Palette,
+                    label: "Components",
+                    desc: "Custom components",
+                    href: "/components",
+                  },
+                  {
+                    icon: FileJson,
+                    label: "Export",
+                    desc: "Export projects",
+                    href: "/export",
+                  },
+                ].map((item) => {
+                  const Icon = item.icon;
+                  return (
+                    <Link
+                      key={item.label}
+                      to={item.href}
+                      className="group relative bg-card border border-border rounded-lg p-4 hover:border-primary/30 transition"
+                    >
+                      <div className="space-y-2">
+                        <div className="flex items-start justify-between">
+                          <Icon className="w-5 h-5 text-muted-foreground group-hover:text-primary transition" />
+                          <ArrowRight className="w-4 h-4 text-muted-foreground opacity-0 group-hover:opacity-100 transition" />
+                        </div>
+                        <div>
+                          <h3 className="font-semibold text-foreground text-sm group-hover:text-primary transition">
+                            {item.label}
+                          </h3>
+                          <p className="text-xs text-muted-foreground mt-1">
+                            {item.desc}
+                          </p>
+                        </div>
+                      </div>
+                    </Link>
+                  );
+                })}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Footer Branding */}
+        <div className="border-t border-border bg-card/20 px-8 py-3 flex items-center justify-between">
+          <p className="text-xs text-muted-foreground">
+            © 2024 Creator Studio. All rights reserved.
+          </p>
+          <img
+            src="https://i.ibb.co/B531Dsh6/roblox-logo-roblox-symbol-meaning-history-and-evolution-3-removebg-preview.png"
+            alt="Powered by Roblox"
+            className="h-3 opacity-40 hover:opacity-60 transition"
+            title="Powered by Roblox"
+          />
         </div>
       </div>
     </div>

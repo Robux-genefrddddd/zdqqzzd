@@ -8,16 +8,18 @@ import {
   Square,
   CreditCard,
   Type,
-  Input,
+  Keyboard,
   FileText,
   Menu,
-  AlertSquare,
+  Layers,
   Images,
   Grid3x3,
   Columns,
   Settings,
   FileJson,
   Zap,
+  Circle,
+  FrameIcon,
 } from "lucide-react";
 
 const BLOCK_CATEGORIES: {
@@ -58,16 +60,20 @@ const BLOCK_ICONS: Record<BlockType, React.ReactNode> = {
   footer: <Menu className="w-4 h-4" />,
   card: <CreditCard className="w-4 h-4" />,
   button: <Zap className="w-4 h-4" />,
-  input: <Input className="w-4 h-4" />,
+  input: <Keyboard className="w-4 h-4" />,
   form: <FileText className="w-4 h-4" />,
   navbar: <Menu className="w-4 h-4" />,
-  modal: <AlertSquare className="w-4 h-4" />,
+  modal: <Layers className="w-4 h-4" />,
   sidebar: <Columns className="w-4 h-4" />,
   list: <FileJson className="w-4 h-4" />,
   text: <Type className="w-4 h-4" />,
   image: <Images className="w-4 h-4" />,
   grid: <Grid3x3 className="w-4 h-4" />,
   "flex-container": <Columns className="w-4 h-4" />,
+  frame: <FrameIcon className="w-4 h-4" />,
+  rectangle: <Square className="w-4 h-4" />,
+  circle: <Circle className="w-4 h-4" />,
+  "shape-text": <Type className="w-4 h-4" />,
 };
 
 export function BlockLibrary() {
