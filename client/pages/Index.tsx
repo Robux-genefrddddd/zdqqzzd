@@ -73,10 +73,10 @@ export default function Index() {
       {/* Main Content */}
       <div className="flex-1 flex flex-col overflow-hidden">
         {/* Header */}
-        <div className="border-b border-border bg-card/30 backdrop-blur-sm px-8 py-4">
+        <div className="border-b border-border bg-card/40 backdrop-blur-sm px-8 py-4">
           <div className="flex items-center justify-between">
             <div>
-              <h1 className="text-xl font-semibold text-foreground">
+              <h1 className="text-lg font-bold text-foreground">
                 Dashboard
               </h1>
               <p className="text-xs text-muted-foreground mt-0.5">
