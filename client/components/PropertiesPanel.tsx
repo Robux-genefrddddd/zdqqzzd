@@ -39,7 +39,7 @@ export function PropertiesPanel() {
       </div>
 
       <ScrollArea className="flex-1">
-        <Tabs defaultValue="design" className="w-full h-full" defaultValue="design">
+        <Tabs defaultValue="design" className="w-full h-full">
           <TabsList className="w-full rounded-none border-b border-border bg-transparent p-0">
             <TabsTrigger value="design" className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary">
               <Palette className="w-4 h-4 mr-2" />
