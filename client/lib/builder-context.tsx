@@ -244,6 +244,70 @@ export function BuilderProvider({ children }: { children: React.ReactNode }) {
     [canvas],
   );
 
+  const updateBlocksStyle = useCallback(
+    (blockIds: string[], style: Partial<BlockStyle>) => {
+      if (!canvas) return;
+
+      const updateMultiple = (blocks: Block[]): void => {
+        for (const block of blocks) {
+          if (blockIds.includes(block.id)) {
+            block.style = { ...block.style, ...style };
+          }
+          updateMultiple(block.children);
+        }
+      };
+
+      const newBlocks = [...canvas.blocks];
+      updateMultiple(newBlocks);
+      setCanvas({ ...canvas, blocks: newBlocks });
+    },
+    [canvas],
+  );
+
+  const toggleBlockLock = useCallback(
+    (blockId: string) => {
+      if (!canvas) return;
+
+      const toggle = (blocks: Block[]): boolean => {
+        for (const block of blocks) {
+          if (block.id === blockId) {
+            block.locked = !block.locked;
+            return true;
+          }
+          if (toggle(block.children)) return true;
+        }
+        return false;
+      };
+
+      const newBlocks = [...canvas.blocks];
+      toggle(newBlocks);
+      setCanvas({ ...canvas, blocks: newBlocks });
+    },
+    [canvas],
+  );
+
+  const toggleBlockVisibility = useCallback(
+    (blockId: string) => {
+      if (!canvas) return;
+
+      const toggle = (blocks: Block[]): boolean => {
+        for (const block of blocks) {
+          if (block.id === blockId) {
+            block.hidden = !block.hidden;
+            return true;
+          }
+          if (toggle(block.children)) return true;
+        }
+        return false;
+      };
+
+      const newBlocks = [...canvas.blocks];
+      toggle(newBlocks);
+      setCanvas({ ...canvas, blocks: newBlocks });
+    },
+    [canvas],
+  );
+
   return (
     <BuilderContext.Provider
       value={{
