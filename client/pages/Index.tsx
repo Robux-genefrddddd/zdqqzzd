@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { Sidebar } from "@/components/Sidebar";
-import { ArrowRight, Plus, Zap, BarChart3, Clock, Grid, Layout, Palette } from "lucide-react";
+import { ArrowRight, Plus, Zap, BarChart3, Clock, Grid, Layout, Palette, Blocks } from "lucide-react";
 
 export default function Index() {
   const projects = [
