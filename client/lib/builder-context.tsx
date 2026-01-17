@@ -313,16 +313,21 @@ export function BuilderProvider({ children }: { children: React.ReactNode }) {
       value={{
         canvas,
         selectedElement,
+        selectedElements,
         setCanvas,
         setSelectedElement,
+        setSelectedElements,
         addBlock,
         removeBlock,
         updateBlock,
         updateBlockStyle,
+        updateBlocksStyle,
         duplicateBlock,
         getBlock,
         getAllBlocks,
         moveBlock,
+        toggleBlockLock,
+        toggleBlockVisibility,
       }}
     >
       {children}
