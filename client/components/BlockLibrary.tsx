@@ -18,6 +18,8 @@ import {
   Settings,
   FileJson,
   Zap,
+  Circle,
+  FrameIcon,
 } from "lucide-react";
 
 const BLOCK_CATEGORIES: {
