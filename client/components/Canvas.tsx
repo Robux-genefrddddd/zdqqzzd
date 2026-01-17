@@ -1,3 +1,4 @@
+import React from "react";
 import { useBuilder } from "@/lib/builder-context";
 import { Block } from "@/lib/types";
 import { BLOCK_DEFAULTS, createBlock } from "@/lib/utils-builder";
