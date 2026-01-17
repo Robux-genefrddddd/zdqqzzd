@@ -270,32 +270,52 @@ export default function Index() {
               </div>
             </div>
 
-            {/* Templates Section */}
+            {/* Quick Access */}
             <div>
-              <h2 className="text-sm font-semibold text-foreground mb-4 uppercase tracking-wide">
-                Starter Templates
+              <h2 className="text-xs font-semibold text-muted-foreground mb-4 uppercase tracking-widest">
+                Quick Access
               </h2>
               <div className="grid grid-cols-3 gap-4">
                 {[
-                  { name: "E-Commerce", icon: Layout },
-                  { name: "Admin Dashboard", icon: BarChart3 },
-                  { name: "Landing Page", icon: Palette },
-                ].map((template) => (
-                  <button
-                    key={template.name}
-                    className="group relative bg-card border border-border rounded-lg p-5 hover:border-primary/30 hover:bg-card/80 transition text-left"
+                  {
+                    icon: BlocksIcon,
+                    label: "Blocks",
+                    desc: "Component library",
+                    href: "/blocks",
+                  },
+                  {
+                    icon: Palette,
+                    label: "Components",
+                    desc: "Custom components",
+                    href: "/components",
+                  },
+                  {
+                    icon: FileJson,
+                    label: "Export",
+                    desc: "Export projects",
+                    href: "/export",
+                  },
+                ].map((item) => (
+                  <Link
+                    key={item.label}
+                    to={item.href}
+                    className="group relative bg-card border border-border rounded-lg p-4 hover:border-primary/30 transition"
                   >
-                    <div className="flex items-start justify-between mb-3">
-                      <template.icon className="w-6 h-6 text-muted-foreground group-hover:text-primary transition" />
-                      <ArrowRight className="w-4 h-4 text-muted-foreground opacity-0 group-hover:opacity-100 transition" />
+                    <div className="space-y-2">
+                      <div className="flex items-start justify-between">
+                        <item.icon className="w-5 h-5 text-muted-foreground group-hover:text-primary transition" />
+                        <ArrowRight className="w-4 h-4 text-muted-foreground opacity-0 group-hover:opacity-100 transition" />
+                      </div>
+                      <div>
+                        <h3 className="font-semibold text-foreground text-sm group-hover:text-primary transition">
+                          {item.label}
+                        </h3>
+                        <p className="text-xs text-muted-foreground mt-1">
+                          {item.desc}
+                        </p>
+                      </div>
                     </div>
-                    <h3 className="font-medium text-foreground text-sm group-hover:text-primary transition">
-                      {template.name}
-                    </h3>
-                    <p className="text-xs text-muted-foreground mt-1">
-                      Start from a professional template
-                    </p>
-                  </button>
+                  </Link>
                 ))}
               </div>
             </div>
