@@ -140,63 +140,63 @@ export default function Index() {
 
             {/* Stats Row */}
             <div>
-              <h2 className="text-sm font-semibold text-foreground mb-3 uppercase tracking-wide">
+              <h2 className="text-xs font-semibold text-muted-foreground mb-3 uppercase tracking-widest">
                 Statistics
               </h2>
               <div className="grid grid-cols-3 gap-4">
-                <div className="bg-card border border-border rounded-lg p-4 hover:border-primary/30 transition">
+                <div className="bg-card border border-border rounded-lg p-5 hover:border-primary/30 transition group">
                   <div className="flex items-start justify-between">
-                    <div>
+                    <div className="flex-1">
                       <p className="text-xs text-muted-foreground font-medium">
                         Total Projects
                       </p>
-                      <p className="text-2xl font-semibold text-foreground mt-2">
+                      <p className="text-3xl font-bold text-foreground mt-2">
                         12
                       </p>
-                      <p className="text-xs text-muted-foreground mt-1">
+                      <p className="text-xs text-muted-foreground mt-2">
                         +2 this month
                       </p>
                     </div>
-                    <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
-                      <Zap className="w-5 h-5 text-primary" />
+                    <div className="w-12 h-12 rounded-lg bg-primary/15 flex items-center justify-center">
+                      <Zap className="w-6 h-6 text-primary" />
                     </div>
                   </div>
                 </div>
 
-                <div className="bg-card border border-border rounded-lg p-4 hover:border-primary/30 transition">
+                <div className="bg-card border border-border rounded-lg p-5 hover:border-primary/30 transition group">
                   <div className="flex items-start justify-between">
-                    <div>
+                    <div className="flex-1">
                       <p className="text-xs text-muted-foreground font-medium">
                         Active Exports
                       </p>
-                      <p className="text-2xl font-semibold text-foreground mt-2">
+                      <p className="text-3xl font-bold text-foreground mt-2">
                         5
                       </p>
-                      <p className="text-xs text-muted-foreground mt-1">
+                      <p className="text-xs text-muted-foreground mt-2">
                         Ready to deploy
                       </p>
                     </div>
-                    <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
-                      <ArrowRight className="w-5 h-5 text-primary" />
+                    <div className="w-12 h-12 rounded-lg bg-primary/15 flex items-center justify-center">
+                      <ArrowRight className="w-6 h-6 text-primary" />
                     </div>
                   </div>
                 </div>
 
-                <div className="bg-card border border-border rounded-lg p-4 hover:border-primary/30 transition">
+                <div className="bg-card border border-border rounded-lg p-5 hover:border-primary/30 transition group">
                   <div className="flex items-start justify-between">
-                    <div>
+                    <div className="flex-1">
                       <p className="text-xs text-muted-foreground font-medium">
-                        This Month
+                        Creation Time
                       </p>
-                      <p className="text-2xl font-semibold text-foreground mt-2">
+                      <p className="text-3xl font-bold text-foreground mt-2">
                         48hrs
                       </p>
-                      <p className="text-xs text-muted-foreground mt-1">
-                        Creation time
+                      <p className="text-xs text-muted-foreground mt-2">
+                        This month
                       </p>
                     </div>
-                    <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
-                      <Clock className="w-5 h-5 text-primary" />
+                    <div className="w-12 h-12 rounded-lg bg-primary/15 flex items-center justify-center">
+                      <Clock className="w-6 h-6 text-primary" />
                     </div>
                   </div>
                 </div>
