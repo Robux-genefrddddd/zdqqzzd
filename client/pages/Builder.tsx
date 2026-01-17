@@ -54,20 +54,23 @@ function BuilderContent() {
         </div>
 
         <div className="flex items-center gap-3">
+          {/* Tool Bar */}
+          <Toolbar currentTool={currentTool} setCurrentTool={setCurrentTool} />
+
           {/* Zoom Controls */}
           <div className="flex items-center gap-1.5 bg-secondary/30 border border-border rounded-md p-1.5">
             <button
-              onClick={() => setZoom(Math.max(50, zoom - 10))}
+              onClick={() => setZoom(Math.max(10, zoom - 10))}
               className="p-1 hover:bg-secondary transition rounded"
               title="Zoom out"
             >
               <ZoomOut className="w-3.5 h-3.5 text-muted-foreground hover:text-foreground" />
             </button>
-            <div className="text-xs text-muted-foreground min-w-10 text-center font-medium">
-              {zoom}%
+            <div className="text-xs text-muted-foreground min-w-12 text-center font-medium">
+              {zoom.toFixed(0)}%
             </div>
             <button
-              onClick={() => setZoom(Math.min(200, zoom + 10))}
+              onClick={() => setZoom(Math.min(400, zoom + 10))}
               className="p-1 hover:bg-secondary transition rounded"
               title="Zoom in"
             >
@@ -77,25 +80,9 @@ function BuilderContent() {
             <button
               onClick={() => setZoom(100)}
               className="p-1 hover:bg-secondary transition rounded text-xs text-muted-foreground hover:text-foreground font-medium"
-              title="Reset zoom"
+              title="Reset zoom (100%)"
             >
               ↺
-            </button>
-          </div>
-
-          {/* View Controls */}
-          <div className="flex items-center gap-1.5 bg-secondary/30 border border-border rounded-md p-1.5">
-            <button
-              className="p-1 hover:bg-secondary transition rounded text-muted-foreground hover:text-foreground"
-              title="Toggle grid"
-            >
-              <Grid3x3 className="w-3.5 h-3.5" />
-            </button>
-            <button
-              className="p-1 hover:bg-secondary transition rounded text-muted-foreground hover:text-foreground"
-              title="Fullscreen"
-            >
-              <Maximize2 className="w-3.5 h-3.5" />
             </button>
           </div>
 
