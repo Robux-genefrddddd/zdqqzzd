@@ -110,6 +110,11 @@ function BuilderContent() {
 
       {/* Main Layout */}
       <div className="flex flex-1 overflow-hidden">
+        {/* Left Panel - Blocks Palette */}
+        <div className="hidden md:flex md:w-72 md:flex-col border-r border-border">
+          <BlocksPalette />
+        </div>
+
         {/* Center Canvas - Main */}
         <div className="flex-1 flex overflow-hidden">
           <Canvas zoom={zoom} />
