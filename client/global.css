@@ -7,30 +7,72 @@
 
 @layer base {
   /**
-   * Tailwind CSS theme
+   * Tailwind CSS theme - Professional Dark Mode
    * tailwind.config.ts expects the following color variables to be expressed as HSL values.
    * A different format will require also updating the theme in tailwind.config.ts.
   */
   :root {
+    /* Dark mode is the default */
+    --background: 0 0% 10%;
+    --foreground: 0 0% 90%;
+
+    --card: 0 0% 13%;
+    --card-foreground: 0 0% 90%;
+
+    --popover: 0 0% 13%;
+    --popover-foreground: 0 0% 90%;
+
+    --primary: 260 85% 60%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 0 0% 20%;
+    --secondary-foreground: 0 0% 90%;
+
+    --muted: 0 0% 25%;
+    --muted-foreground: 0 0% 65%;
+
+    --accent: 260 85% 60%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 0 0% 20%;
+    --input: 0 0% 15%;
+    --ring: 260 85% 60%;
+
+    --radius: 0.625rem;
+
+    --sidebar-background: 0 0% 11%;
+    --sidebar-foreground: 0 0% 85%;
+    --sidebar-primary: 260 85% 60%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 0 0% 18%;
+    --sidebar-accent-foreground: 0 0% 85%;
+    --sidebar-border: 0 0% 18%;
+    --sidebar-ring: 260 85% 60%;
+  }
+
+  .light {
     --background: 0 0% 100%;
-    --foreground: 12 8% 8%;
+    --foreground: 0 0% 10%;
 
     --card: 0 0% 100%;
-    --card-foreground: 12 8% 8%;
+    --card-foreground: 0 0% 10%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 12 8% 8%;
+    --popover-foreground: 0 0% 10%;
 
-    --primary: 260 90% 56%;
+    --primary: 260 85% 60%;
     --primary-foreground: 0 0% 100%;
 
     --secondary: 0 0% 96%;
-    --secondary-foreground: 12 8% 8%;
+    --secondary-foreground: 0 0% 10%;
 
     --muted: 0 0% 91%;
-    --muted-foreground: 12 8% 45%;
+    --muted-foreground: 0 0% 45%;
 
-    --accent: 260 90% 56%;
+    --accent: 260 85% 60%;
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84.2% 60.2%;
@@ -38,57 +80,16 @@
 
     --border: 0 0% 92%;
     --input: 0 0% 97%;
-    --ring: 260 90% 56%;
-
-    --radius: 0.625rem;
+    --ring: 260 85% 60%;
 
     --sidebar-background: 0 0% 99%;
-    --sidebar-foreground: 12 8% 8%;
-    --sidebar-primary: 260 90% 56%;
+    --sidebar-foreground: 0 0% 10%;
+    --sidebar-primary: 260 85% 60%;
     --sidebar-primary-foreground: 0 0% 100%;
     --sidebar-accent: 0 0% 93%;
-    --sidebar-accent-foreground: 12 8% 8%;
+    --sidebar-accent-foreground: 0 0% 10%;
     --sidebar-border: 0 0% 92%;
-    --sidebar-ring: 260 90% 56%;
-  }
-
-  .dark {
-    --background: 12 8% 8%;
-    --foreground: 0 0% 98%;
-
-    --card: 12 8% 13%;
-    --card-foreground: 0 0% 98%;
-
-    --popover: 12 8% 13%;
-    --popover-foreground: 0 0% 98%;
-
-    --primary: 260 90% 56%;
-    --primary-foreground: 0 0% 100%;
-
-    --secondary: 12 8% 20%;
-    --secondary-foreground: 0 0% 98%;
-
-    --muted: 12 8% 25%;
-    --muted-foreground: 0 0% 65%;
-
-    --accent: 260 90% 56%;
-    --accent-foreground: 0 0% 100%;
-
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 0 0% 100%;
-
-    --border: 12 8% 20%;
-    --input: 12 8% 15%;
-    --ring: 260 90% 56%;
-
-    --sidebar-background: 12 8% 10%;
-    --sidebar-foreground: 0 0% 98%;
-    --sidebar-primary: 260 90% 56%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 12 8% 20%;
-    --sidebar-accent-foreground: 0 0% 98%;
-    --sidebar-border: 12 8% 18%;
-    --sidebar-ring: 260 90% 56%;
+    --sidebar-ring: 260 85% 60%;
   }
 }
 
