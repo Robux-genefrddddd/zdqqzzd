@@ -40,68 +40,68 @@ function BuilderContent() {
           <div className="text-xs text-muted-foreground">UI Editor</div>
         </div>
 
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-3">
           {/* Zoom Controls */}
-          <div className="flex items-center gap-2 bg-secondary/50 rounded-lg p-2">
+          <div className="flex items-center gap-1.5 bg-secondary/30 border border-border rounded-md p-1.5">
             <button
               onClick={() => setZoom(Math.max(50, zoom - 10))}
-              className="p-1.5 hover:bg-secondary transition rounded"
+              className="p-1 hover:bg-secondary transition rounded"
               title="Zoom out"
             >
-              <ZoomOut className="w-4 h-4 text-muted-foreground hover:text-foreground" />
+              <ZoomOut className="w-3.5 h-3.5 text-muted-foreground hover:text-foreground" />
             </button>
-            <div className="text-xs text-muted-foreground min-w-12 text-center">{zoom}%</div>
+            <div className="text-xs text-muted-foreground min-w-10 text-center font-medium">{zoom}%</div>
             <button
               onClick={() => setZoom(Math.min(200, zoom + 10))}
-              className="p-1.5 hover:bg-secondary transition rounded"
+              className="p-1 hover:bg-secondary transition rounded"
               title="Zoom in"
             >
-              <ZoomIn className="w-4 h-4 text-muted-foreground hover:text-foreground" />
+              <ZoomIn className="w-3.5 h-3.5 text-muted-foreground hover:text-foreground" />
             </button>
-            <div className="w-px h-4 bg-border mx-1" />
+            <div className="w-px h-3 bg-border/50 mx-1" />
             <button
               onClick={() => setZoom(100)}
-              className="p-1.5 hover:bg-secondary transition rounded text-xs text-muted-foreground hover:text-foreground font-medium"
+              className="p-1 hover:bg-secondary transition rounded text-xs text-muted-foreground hover:text-foreground font-medium"
               title="Reset zoom"
             >
-              100%
+              ↺
             </button>
           </div>
 
           {/* View Controls */}
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-1.5 bg-secondary/30 border border-border rounded-md p-1.5">
             <button
-              className="p-2 hover:bg-secondary transition rounded-lg text-muted-foreground hover:text-foreground"
+              className="p-1 hover:bg-secondary transition rounded text-muted-foreground hover:text-foreground"
               title="Toggle grid"
             >
-              <Grid3x3 className="w-4 h-4" />
+              <Grid3x3 className="w-3.5 h-3.5" />
             </button>
             <button
-              className="p-2 hover:bg-secondary transition rounded-lg text-muted-foreground hover:text-foreground"
+              className="p-1 hover:bg-secondary transition rounded text-muted-foreground hover:text-foreground"
               title="Fullscreen"
             >
-              <Maximize2 className="w-4 h-4" />
+              <Maximize2 className="w-3.5 h-3.5" />
             </button>
           </div>
 
           {/* Actions */}
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2 ml-auto">
             <button
               onClick={handlePreview}
-              className="px-3 py-1.5 text-xs font-medium rounded-lg border border-border hover:border-primary/50 hover:bg-secondary transition text-muted-foreground hover:text-foreground flex items-center gap-1.5"
+              className="px-3 py-1.5 text-xs font-medium rounded-md border border-border hover:border-primary/50 hover:bg-secondary/50 transition text-muted-foreground hover:text-foreground flex items-center gap-1.5"
             >
-              <Eye className="w-4 h-4" />
+              <Eye className="w-3.5 h-3.5" />
               Preview
             </button>
             <button
               onClick={handleExportHTML}
-              className="px-3 py-1.5 text-xs font-medium rounded-lg border border-border hover:border-primary/50 hover:bg-secondary transition text-muted-foreground hover:text-foreground flex items-center gap-1.5"
+              className="px-3 py-1.5 text-xs font-medium rounded-md border border-border hover:border-primary/50 hover:bg-secondary/50 transition text-muted-foreground hover:text-foreground flex items-center gap-1.5"
             >
-              <Download className="w-4 h-4" />
+              <Download className="w-3.5 h-3.5" />
               Export
             </button>
-            <button className="px-3 py-1.5 text-xs font-medium rounded-lg bg-primary hover:bg-primary/90 transition text-primary-foreground flex items-center gap-1.5">
-              <Save className="w-4 h-4" />
+            <button className="px-3 py-1.5 text-xs font-medium rounded-md bg-primary hover:bg-primary/90 transition text-primary-foreground flex items-center gap-1.5">
+              <Save className="w-3.5 h-3.5" />
               Save
             </button>
           </div>
