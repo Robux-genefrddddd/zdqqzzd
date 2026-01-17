@@ -1,8 +1,9 @@
 import { useBuilder, BuilderProvider } from "@/lib/builder-context";
 import { Sidebar } from "@/components/Sidebar";
-import { BlocksPalette } from "@/components/BlocksPalette";
-import { Canvas } from "@/components/Canvas";
+import { CanvasV2 } from "@/components/CanvasV2";
 import { PropertiesPanel } from "@/components/PropertiesPanel";
+import { Toolbar } from "@/components/Toolbar";
+import { LayersPanel } from "@/components/LayersPanel";
 import {
   Download,
   Save,
@@ -11,10 +12,10 @@ import {
   ZoomOut,
   Grid3x3,
   Maximize2,
-  ChevronLeft,
 } from "lucide-react";
 import { useState } from "react";
 import { canvasToDemoHTML } from "@/lib/utils-builder";
+import { ToolType } from "@/lib/types";
 
 function BuilderContent() {
   const { canvas } = useBuilder();
