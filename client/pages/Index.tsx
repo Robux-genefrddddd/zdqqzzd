@@ -321,6 +321,19 @@ export default function Index() {
             </div>
           </div>
         </div>
+
+        {/* Footer */}
+        <div className="border-t border-border bg-card/20 px-8 py-3 flex items-center justify-between">
+          <p className="text-xs text-muted-foreground">
+            © 2024 Creator Studio. All rights reserved.
+          </p>
+          <img
+            src="https://i.ibb.co/B531Dsh6/roblox-logo-roblox-symbol-meaning-history-and-evolution-3-removebg-preview.png"
+            alt="Powered by Roblox"
+            className="h-3 opacity-40 hover:opacity-60 transition"
+            title="Powered by Roblox"
+          />
+        </div>
       </div>
     </div>
   );
