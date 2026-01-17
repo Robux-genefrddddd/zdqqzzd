@@ -1,16 +1,14 @@
 import { useBuilder, BuilderProvider } from "@/lib/builder-context";
-import { BlockLibrary } from "@/components/BlockLibrary";
+import { Sidebar } from "@/components/Sidebar";
 import { Canvas } from "@/components/Canvas";
 import { PropertiesPanel } from "@/components/PropertiesPanel";
-import { Link } from "react-router-dom";
-import { Download, Save, Eye, Menu } from "lucide-react";
+import { Download, Save, Eye, ZoomIn, ZoomOut, Grid3x3, Maximize2 } from "lucide-react";
 import { useState } from "react";
 import { canvasToDemoHTML } from "@/lib/utils-builder";
-import { Button } from "@/components/ui/button";
 
 function BuilderContent() {
   const { canvas } = useBuilder();
-  const [showMenu, setShowMenu] = useState(false);
+  const [zoom, setZoom] = useState(100);
 
   const handleExportHTML = () => {
     if (!canvas) return;
@@ -35,99 +33,105 @@ function BuilderContent() {
   return (
     <div className="h-screen flex flex-col bg-background">
       {/* Top Navigation */}
-      <div className="border-b border-border bg-card/50 backdrop-blur-sm px-4 py-3 flex items-center justify-between">
-        <div className="flex items-center gap-3">
-          <Link to="/" className="flex items-center gap-2 font-display font-bold">
-            <div className="w-6 h-6 rounded-lg bg-gradient-to-br from-primary to-primary/70 flex items-center justify-center text-white text-xs">
-              ◇
-            </div>
-            <span className="hidden sm:inline">BuildUI</span>
-          </Link>
-          <div className="hidden sm:flex items-center gap-2 px-3 py-1 bg-secondary/50 rounded-lg">
-            <span className="text-sm font-medium text-foreground">{canvas?.name || "Untitled"}</span>
-          </div>
+      <div className="border-b border-border bg-card/50 backdrop-blur-sm px-6 py-4 flex items-center justify-between">
+        <div className="flex items-center gap-4">
+          <h1 className="text-sm font-bold text-foreground">{canvas?.name || "Untitled Project"}</h1>
+          <div className="text-xs text-muted-foreground">UI Editor</div>
         </div>
 
-        <div className="flex items-center gap-3">
-          <Button
-            onClick={handlePreview}
-            variant="outline"
-            size="sm"
-            className="hidden sm:inline-flex gap-2"
-          >
-            <Eye className="w-4 h-4" />
-            Preview
-          </Button>
-          <Button
-            onClick={handleExportHTML}
-            variant="outline"
-            size="sm"
-            className="hidden sm:inline-flex gap-2"
-          >
-            <Download className="w-4 h-4" />
-            Export
-          </Button>
-          <Button variant="default" size="sm" className="hidden sm:inline-flex gap-2">
-            <Save className="w-4 h-4" />
-            Save
-          </Button>
+        <div className="flex items-center gap-4">
+          {/* Zoom Controls */}
+          <div className="flex items-center gap-2 bg-secondary/50 rounded-lg p-2">
+            <button
+              onClick={() => setZoom(Math.max(50, zoom - 10))}
+              className="p-1.5 hover:bg-secondary transition rounded"
+              title="Zoom out"
+            >
+              <ZoomOut className="w-4 h-4 text-muted-foreground hover:text-foreground" />
+            </button>
+            <div className="text-xs text-muted-foreground min-w-12 text-center">{zoom}%</div>
+            <button
+              onClick={() => setZoom(Math.min(200, zoom + 10))}
+              className="p-1.5 hover:bg-secondary transition rounded"
+              title="Zoom in"
+            >
+              <ZoomIn className="w-4 h-4 text-muted-foreground hover:text-foreground" />
+            </button>
+            <div className="w-px h-4 bg-border mx-1" />
+            <button
+              onClick={() => setZoom(100)}
+              className="p-1.5 hover:bg-secondary transition rounded text-xs text-muted-foreground hover:text-foreground font-medium"
+              title="Reset zoom"
+            >
+              100%
+            </button>
+          </div>
 
-          <button
-            onClick={() => setShowMenu(!showMenu)}
-            className="sm:hidden p-2 hover:bg-secondary rounded-lg transition"
-          >
-            <Menu className="w-5 h-5" />
-          </button>
+          {/* View Controls */}
+          <div className="flex items-center gap-2">
+            <button
+              className="p-2 hover:bg-secondary transition rounded-lg text-muted-foreground hover:text-foreground"
+              title="Toggle grid"
+            >
+              <Grid3x3 className="w-4 h-4" />
+            </button>
+            <button
+              className="p-2 hover:bg-secondary transition rounded-lg text-muted-foreground hover:text-foreground"
+              title="Fullscreen"
+            >
+              <Maximize2 className="w-4 h-4" />
+            </button>
+          </div>
+
+          {/* Actions */}
+          <div className="flex items-center gap-2">
+            <button
+              onClick={handlePreview}
+              className="px-3 py-1.5 text-xs font-medium rounded-lg border border-border hover:border-primary/50 hover:bg-secondary transition text-muted-foreground hover:text-foreground flex items-center gap-1.5"
+            >
+              <Eye className="w-4 h-4" />
+              Preview
+            </button>
+            <button
+              onClick={handleExportHTML}
+              className="px-3 py-1.5 text-xs font-medium rounded-lg border border-border hover:border-primary/50 hover:bg-secondary transition text-muted-foreground hover:text-foreground flex items-center gap-1.5"
+            >
+              <Download className="w-4 h-4" />
+              Export
+            </button>
+            <button className="px-3 py-1.5 text-xs font-medium rounded-lg bg-primary hover:bg-primary/90 transition text-primary-foreground flex items-center gap-1.5">
+              <Save className="w-4 h-4" />
+              Save
+            </button>
+          </div>
         </div>
       </div>
 
       {/* Main Layout */}
       <div className="flex flex-1 overflow-hidden">
-        {/* Left Sidebar - Block Library */}
-        <div className="hidden md:flex md:w-64 border-r border-border flex-col">
-          <BlockLibrary />
+        {/* Center Canvas - Main */}
+        <div className="flex-1 flex overflow-hidden">
+          <Canvas zoom={zoom} />
         </div>
 
-        {/* Center Canvas */}
-        <Canvas />
-
         {/* Right Panel - Properties */}
-        <div className="hidden lg:flex lg:flex-col">
+        <div className="hidden xl:flex xl:w-80 xl:flex-col border-l border-border">
           <PropertiesPanel />
         </div>
       </div>
-
-      {/* Mobile Menu */}
-      {showMenu && (
-        <div className="sm:hidden absolute top-14 right-4 z-50 bg-card border border-border rounded-lg shadow-lg overflow-hidden min-w-48">
-          <button
-            onClick={handlePreview}
-            className="w-full px-4 py-2 text-left text-sm hover:bg-secondary transition flex items-center gap-2"
-          >
-            <Eye className="w-4 h-4" />
-            Preview
-          </button>
-          <button
-            onClick={handleExportHTML}
-            className="w-full px-4 py-2 text-left text-sm hover:bg-secondary transition flex items-center gap-2 border-t border-border"
-          >
-            <Download className="w-4 h-4" />
-            Export HTML
-          </button>
-          <button className="w-full px-4 py-2 text-left text-sm hover:bg-secondary transition flex items-center gap-2 border-t border-border">
-            <Save className="w-4 h-4" />
-            Save
-          </button>
-        </div>
-      )}
     </div>
   );
 }
 
 export default function Builder() {
   return (
-    <BuilderProvider>
-      <BuilderContent />
-    </BuilderProvider>
+    <div className="flex h-screen">
+      <Sidebar />
+      <div className="flex-1">
+        <BuilderProvider>
+          <BuilderContent />
+        </BuilderProvider>
+      </div>
+    </div>
   );
 }
