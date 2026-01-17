@@ -98,7 +98,7 @@ export default function Index() {
           <div className="p-8 max-w-7xl mx-auto w-full space-y-8">
             {/* Quick Actions */}
             <div>
-              <h2 className="text-sm font-semibold text-foreground mb-3 uppercase tracking-wide">
+              <h2 className="text-xs font-semibold text-muted-foreground mb-3 uppercase tracking-widest">
                 Quick Start
               </h2>
               <div className="grid grid-cols-3 gap-3">
@@ -117,21 +117,21 @@ export default function Index() {
                     <Link
                       key={idx}
                       to={action.href}
-                      className={`group flex items-center gap-3 px-4 py-3 rounded-lg transition border ${
+                      className={`group flex items-center gap-3 px-4 py-3 rounded-lg transition border text-sm font-medium ${
                         action.primary
-                          ? "bg-primary/10 border-primary/30 hover:border-primary/50 hover:bg-primary/15"
-                          : "bg-card border-border hover:border-primary/30 hover:bg-card/80"
+                          ? "bg-primary/15 border-primary/40 hover:border-primary/60 hover:bg-primary/20"
+                          : "bg-card/50 border-border hover:border-primary/30 hover:bg-card/80"
                       }`}
                     >
                       <Icon
                         className={`w-5 h-5 ${action.primary ? "text-primary" : "text-muted-foreground group-hover:text-primary"} transition`}
                       />
                       <span
-                        className={`text-sm font-medium ${action.primary ? "text-primary" : "text-sidebar-accent-foreground group-hover:text-foreground"} transition`}
+                        className={action.primary ? "text-primary" : "text-foreground"}
                       >
                         {action.label}
                       </span>
-                      <ArrowRight className="w-4 h-4 text-muted-foreground group-hover:text-primary opacity-0 group-hover:opacity-100 transition" />
+                      <ArrowRight className="w-4 h-4 text-muted-foreground group-hover:text-primary opacity-0 group-hover:opacity-100 transition ml-auto" />
                     </Link>
                   );
                 })}
