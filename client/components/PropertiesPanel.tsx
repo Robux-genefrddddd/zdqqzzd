@@ -30,12 +30,12 @@ export function PropertiesPanel() {
   };
 
   return (
-    <div className="w-80 border-l border-border bg-card flex flex-col">
-      <div className="p-4 border-b border-border">
+    <div className="w-80 border-l border-border bg-card/50 flex flex-col">
+      <div className="px-4 py-3.5 border-b border-border/60">
         <h2 className="text-sm font-semibold text-foreground">
           {block.label}
         </h2>
-        <p className="text-xs text-muted-foreground mt-1">{block.type}</p>
+        <p className="text-xs text-muted-foreground mt-0.5">{block.type}</p>
       </div>
 
       <ScrollArea className="flex-1">
