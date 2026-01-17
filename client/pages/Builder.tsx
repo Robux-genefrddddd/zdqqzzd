@@ -20,6 +20,7 @@ import { ToolType } from "@/lib/types";
 function BuilderContent() {
   const { canvas } = useBuilder();
   const [zoom, setZoom] = useState(100);
+  const [currentTool, setCurrentTool] = useState<ToolType>("select");
 
   const handleExportHTML = () => {
     if (!canvas) return;
