@@ -9,7 +9,8 @@ import {
   Grid,
   Layout,
   Palette,
-  Blocks,
+  Blocks as BlocksIcon,
+  FileJson,
 } from "lucide-react";
 
 export default function Index() {
