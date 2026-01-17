@@ -11,7 +11,11 @@ interface PropertySectionProps {
   defaultOpen?: boolean;
 }
 
-function PropertySection({ title, children, defaultOpen = true }: PropertySectionProps) {
+function PropertySection({
+  title,
+  children,
+  defaultOpen = true,
+}: PropertySectionProps) {
   const [isOpen, setIsOpen] = useState(defaultOpen);
 
   return (
@@ -56,12 +60,15 @@ function PropertyInput({
 }: InputProps) {
   return (
     <div className="space-y-1">
-      <label className="text-xs text-muted-foreground font-medium">{label}</label>
+      <label className="text-xs text-muted-foreground font-medium">
+        {label}
+      </label>
       <input
         type={type}
         value={value}
         onChange={(e) => {
-          const val = type === "number" ? parseFloat(e.target.value) : e.target.value;
+          const val =
+            type === "number" ? parseFloat(e.target.value) : e.target.value;
           onChange(isNaN(val as number) ? 0 : val);
         }}
         min={min}

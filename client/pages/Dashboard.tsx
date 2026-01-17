@@ -124,7 +124,7 @@ export default function Dashboard() {
                         "border text-sm font-medium",
                         action.primary
                           ? "bg-primary/15 border-primary/40 hover:border-primary/60 hover:bg-primary/20"
-                          : "bg-card/50 border-border hover:border-primary/30 hover:bg-card/80"
+                          : "bg-card/50 border-border hover:border-primary/30 hover:bg-card/80",
                       )}
                     >
                       <Icon
@@ -132,7 +132,7 @@ export default function Dashboard() {
                           "w-5 h-5",
                           action.primary
                             ? "text-primary"
-                            : "text-muted-foreground group-hover:text-primary"
+                            : "text-muted-foreground group-hover:text-primary",
                         )}
                       />
                       <span
@@ -178,7 +178,7 @@ export default function Dashboard() {
                           className={cn(
                             "w-12 h-12 rounded-lg flex items-center justify-center",
                             "bg-gradient-to-br",
-                            stat.color
+                            stat.color,
                           )}
                         >
                           <Icon className="w-6 h-6 text-muted-foreground group-hover:text-primary transition" />
@@ -226,7 +226,7 @@ export default function Dashboard() {
                             "w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold",
                             project.status === "active"
                               ? "bg-green-500/20 text-green-400"
-                              : "bg-yellow-500/20 text-yellow-400"
+                              : "bg-yellow-500/20 text-yellow-400",
                           )}
                         >
                           {project.progress}%
@@ -245,9 +245,7 @@ export default function Dashboard() {
                                 : "text-yellow-400"
                             }
                           >
-                            {project.status === "active"
-                              ? "Active"
-                              : "Draft"}
+                            {project.status === "active" ? "Active" : "Draft"}
                           </span>
                         </div>
                         <div className="w-full h-1.5 bg-secondary rounded-full overflow-hidden">
@@ -256,7 +254,7 @@ export default function Dashboard() {
                               "h-full rounded-full transition-all duration-300",
                               project.status === "active"
                                 ? "bg-green-500"
-                                : "bg-yellow-500"
+                                : "bg-yellow-500",
                             )}
                             style={{ width: `${project.progress}%` }}
                           />

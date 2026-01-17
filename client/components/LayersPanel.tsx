@@ -1,7 +1,14 @@
 import React, { useState } from "react";
 import { useBuilder } from "@/lib/builder-context";
 import { Block } from "@/lib/types";
-import { Eye, EyeOff, Lock, Unlock, ChevronDown, ChevronRight } from "lucide-react";
+import {
+  Eye,
+  EyeOff,
+  Lock,
+  Unlock,
+  ChevronDown,
+  ChevronRight,
+} from "lucide-react";
 import { cn } from "@/lib/utils";
 import { ScrollArea } from "@/components/ui/scroll-area";
 

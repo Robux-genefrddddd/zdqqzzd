@@ -94,10 +94,7 @@ export function CanvasV2({ currentTool, zoom, setZoom }: CanvasV2Props) {
       const zoomFactor = newZoom / zoom;
 
       // Zoom towards cursor
-      const [canvasX, canvasY] = mouseToCanvasCoords(
-        e.clientX,
-        e.clientY,
-      );
+      const [canvasX, canvasY] = mouseToCanvasCoords(e.clientX, e.clientY);
 
       setPanX(panX - canvasX * (zoomFactor - 1));
       setPanY(panY - canvasY * (zoomFactor - 1));
@@ -128,10 +125,7 @@ export function CanvasV2({ currentTool, zoom, setZoom }: CanvasV2Props) {
       }
 
       // Check if clicking on an existing element
-      const [canvasX, canvasY] = mouseToCanvasCoords(
-        e.clientX,
-        e.clientY,
-      );
+      const [canvasX, canvasY] = mouseToCanvasCoords(e.clientX, e.clientY);
       const clickedBlock = findBlockAtPosition(canvas.blocks, canvasX, canvasY);
 
       if (clickedBlock) {
@@ -278,16 +272,12 @@ export function CanvasV2({ currentTool, zoom, setZoom }: CanvasV2Props) {
       }
 
       if (isCreating) {
-        const [canvasX, canvasY] = mouseToCanvasCoords(
-          e.clientX,
-          e.clientY,
-        );
+        const [canvasX, canvasY] = mouseToCanvasCoords(e.clientX, e.clientY);
         const width = Math.abs(canvasX - createStartX);
         const height = Math.abs(canvasY - createStartY);
 
         if (width > 20 && height > 20) {
-          const blockType =
-            currentTool === "circle" ? "circle" : "rectangle";
+          const blockType = currentTool === "circle" ? "circle" : "rectangle";
           const newBlock: Block = {
             id: generateId(),
             type: blockType as any,
@@ -399,9 +389,7 @@ export function CanvasV2({ currentTool, zoom, setZoom }: CanvasV2Props) {
         handleY = screenBy + screenBh / 2;
       }
 
-      const dist = Math.sqrt(
-        (mouseX - handleX) ** 2 + (mouseY - handleY) ** 2,
-      );
+      const dist = Math.sqrt((mouseX - handleX) ** 2 + (mouseY - handleY) ** 2);
       if (dist < HANDLE_SIZE + 4) {
         return handle;
       }
@@ -426,8 +414,7 @@ export function CanvasV2({ currentTool, zoom, setZoom }: CanvasV2Props) {
       top: `${y}px`,
       width: `${width}px`,
       height: `${height}px`,
-      backgroundColor:
-        block.style.backgroundColor || "hsl(262 85% 65%)",
+      backgroundColor: block.style.backgroundColor || "hsl(262 85% 65%)",
       borderRadius: block.style.borderRadius || 0,
       cursor: "move",
       opacity: block.style.opacity || 1,

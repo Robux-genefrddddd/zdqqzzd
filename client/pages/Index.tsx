@@ -45,7 +45,6 @@ export default function Index() {
     },
   ];
 
-
   return (
     <div className="flex h-screen bg-background">
       {/* Sidebar */}
@@ -57,9 +56,7 @@ export default function Index() {
         <div className="border-b border-border bg-card/40 backdrop-blur-sm px-8 py-4">
           <div className="flex items-center justify-between">
             <div>
-              <h1 className="text-lg font-bold text-foreground">
-                Dashboard
-              </h1>
+              <h1 className="text-lg font-bold text-foreground">Dashboard</h1>
               <p className="text-xs text-muted-foreground mt-0.5">
                 Welcome back to Creator Studio
               </p>
@@ -108,7 +105,9 @@ export default function Index() {
                         className={`w-5 h-5 ${action.primary ? "text-primary" : "text-muted-foreground group-hover:text-primary"} transition`}
                       />
                       <span
-                        className={action.primary ? "text-primary" : "text-foreground"}
+                        className={
+                          action.primary ? "text-primary" : "text-foreground"
+                        }
                       >
                         {action.label}
                       </span>
@@ -229,9 +228,7 @@ export default function Index() {
                                 : "text-yellow-400"
                             }
                           >
-                            {project.status === "active"
-                              ? "Active"
-                              : "Draft"}
+                            {project.status === "active" ? "Active" : "Draft"}
                           </span>
                         </div>
                         <div className="w-full h-1.5 bg-secondary rounded-full overflow-hidden">

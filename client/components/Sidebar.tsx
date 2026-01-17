@@ -121,10 +121,14 @@ export function Sidebar() {
                     : "text-sidebar-accent-foreground hover:bg-sidebar-accent/50 hover:text-sidebar-foreground",
                 )}
               >
-                <Icon className={cn(
-                  "w-4 h-4 flex-shrink-0 transition",
-                  active ? "text-sidebar-primary" : "text-sidebar-accent-foreground group-hover:text-sidebar-foreground"
-                )} />
+                <Icon
+                  className={cn(
+                    "w-4 h-4 flex-shrink-0 transition",
+                    active
+                      ? "text-sidebar-primary"
+                      : "text-sidebar-accent-foreground group-hover:text-sidebar-foreground",
+                  )}
+                />
                 <span className="truncate">{item.label}</span>
                 {active && (
                   <div className="absolute -right-1 top-1/2 -translate-y-1/2 w-1.5 h-6 bg-primary rounded-l-full shadow-lg shadow-primary/40" />
