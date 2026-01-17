@@ -214,5 +214,3 @@ export function Canvas({ zoom = 100 }: CanvasProps) {
     </div>
   );
 }
-
-import React from "react";
