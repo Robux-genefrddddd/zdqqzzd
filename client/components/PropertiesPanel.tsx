@@ -40,17 +40,17 @@ export function PropertiesPanel() {
 
       <ScrollArea className="flex-1">
         <Tabs defaultValue="design" className="w-full h-full">
-          <TabsList className="w-full rounded-none border-b border-border bg-transparent p-0">
-            <TabsTrigger value="design" className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary">
-              <Palette className="w-4 h-4 mr-2" />
+          <TabsList className="w-full rounded-none border-b border-border bg-transparent p-0 justify-start">
+            <TabsTrigger value="design" className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary text-xs">
+              <Palette className="w-4 h-4 mr-1.5" />
               Design
             </TabsTrigger>
-            <TabsTrigger value="layout" className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary">
-              <BoxSelect className="w-4 h-4 mr-2" />
+            <TabsTrigger value="layout" className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary text-xs">
+              <BoxSelect className="w-4 h-4 mr-1.5" />
               Layout
             </TabsTrigger>
-            <TabsTrigger value="content" className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary">
-              <Type className="w-4 h-4 mr-2" />
+            <TabsTrigger value="content" className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary text-xs">
+              <Type className="w-4 h-4 mr-1.5" />
               Content
             </TabsTrigger>
           </TabsList>
