@@ -110,14 +110,6 @@ export function CanvasV2({ currentTool, zoom, setZoom }: CanvasV2Props) {
   // Pan with Space + drag
   const handleMouseDown = useCallback(
     (e: React.MouseEvent) => {
-      // Check if Space key is held (for panning)
-      if ((e as any).nativeEvent?.shiftKey || (window as any).__spaceHeld) {
-        setIsPanning(true);
-        setPanStartX(e.clientX);
-        setPanStartY(e.clientY);
-        return;
-      }
-
       // Check if clicking on a resize handle
       if (selectedElement) {
         const block = getBlock(selectedElement.id);
