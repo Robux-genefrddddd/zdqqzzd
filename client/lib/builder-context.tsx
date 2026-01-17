@@ -5,16 +5,21 @@ import { generateId } from "./utils";
 interface BuilderContextType {
   canvas: Canvas | null;
   selectedElement: SelectedElement | null;
+  selectedElements: SelectedElement[];
   setCanvas: (canvas: Canvas) => void;
   setSelectedElement: (element: SelectedElement | null) => void;
+  setSelectedElements: (elements: SelectedElement[]) => void;
   addBlock: (block: Block, parentId?: string) => void;
   removeBlock: (blockId: string) => void;
   updateBlock: (blockId: string, updates: Partial<Block>) => void;
   updateBlockStyle: (blockId: string, style: Partial<BlockStyle>) => void;
+  updateBlocksStyle: (blockIds: string[], style: Partial<BlockStyle>) => void;
   duplicateBlock: (blockId: string) => void;
   getBlock: (blockId: string) => Block | null;
   getAllBlocks: (blocks?: Block[]) => Block[];
   moveBlock: (blockId: string, direction: "up" | "down") => void;
+  toggleBlockLock: (blockId: string) => void;
+  toggleBlockVisibility: (blockId: string) => void;
 }
 
 const BuilderContext = createContext<BuilderContextType | undefined>(undefined);
