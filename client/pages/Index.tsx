@@ -206,51 +206,62 @@ export default function Index() {
             {/* Recent Projects */}
             <div>
               <div className="flex items-center justify-between mb-4">
-                <h2 className="text-sm font-semibold text-foreground uppercase tracking-wide">
+                <h2 className="text-xs font-semibold text-muted-foreground uppercase tracking-widest">
                   Recent Projects
                 </h2>
                 <Link
                   to="/builder"
-                  className="text-xs text-primary hover:text-primary/80 font-medium transition"
+                  className="text-xs text-primary hover:text-primary/80 font-medium transition flex items-center gap-1"
                 >
-                  View All →
+                  View All <ArrowRight className="w-3 h-3" />
                 </Link>
               </div>
 
-              <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+              <div className="grid grid-cols-2 gap-4">
                 {projects.map((project) => (
                   <Link
                     key={project.id}
                     to="/builder"
-                    className="group bg-card border border-border rounded-lg overflow-hidden hover:border-primary/30 hover:bg-card/80 transition"
+                    className="group bg-card border border-border rounded-lg overflow-hidden hover:border-primary/30 transition"
                   >
-                    {/* Thumbnail */}
-                    <div className="w-full aspect-video bg-gradient-to-br from-secondary to-secondary/50 flex items-center justify-center border-b border-border group-hover:from-secondary group-hover:to-secondary/40 transition">
-                      <div className="text-center">
-                        <Palette className="w-8 h-8 text-muted-foreground/40 mx-auto mb-2" />
-                        <p className="text-xs text-muted-foreground/60 font-medium">
-                          Design Preview
-                        </p>
+                    <div className="p-4 space-y-3">
+                      <div className="flex items-start justify-between">
+                        <div className="flex-1">
+                          <h3 className="font-semibold text-foreground text-sm group-hover:text-primary transition line-clamp-1">
+                            {project.name}
+                          </h3>
+                          <p className="text-xs text-muted-foreground mt-1">
+                            Updated {project.updated}
+                          </p>
+                        </div>
                       </div>
-                    </div>
 
-                    {/* Info */}
-                    <div className="p-3">
-                      <h3 className="font-medium text-foreground text-sm group-hover:text-primary transition line-clamp-1">
-                        {project.name}
-                      </h3>
-
-                      <div className="mt-2 space-y-1 text-xs text-muted-foreground">
-                        <p className="line-clamp-1">
-                          Updated {project.updated}
-                        </p>
-                        <div className="flex items-center gap-2 pt-1 border-t border-border">
-                          <span
-                            className={`inline-block w-2 h-2 rounded-full ${project.status === "active" ? "bg-green-500/80" : "bg-yellow-500/80"}`}
-                          />
-                          <span className="capitalize font-medium">
-                            {project.status}
+                      <div className="space-y-2">
+                        <div className="flex items-center justify-between text-xs">
+                          <span className="text-muted-foreground">
+                            Progress
                           </span>
+                          <span
+                            className={
+                              project.status === "active"
+                                ? "text-green-400"
+                                : "text-yellow-400"
+                            }
+                          >
+                            {project.status === "active"
+                              ? "Active"
+                              : "Draft"}
+                          </span>
+                        </div>
+                        <div className="w-full h-1.5 bg-secondary rounded-full overflow-hidden">
+                          <div
+                            className={`h-full rounded-full transition-all duration-300 ${
+                              project.status === "active"
+                                ? "bg-green-500"
+                                : "bg-yellow-500"
+                            }`}
+                            style={{ width: `${Math.random() * 60 + 40}%` }}
+                          />
                         </div>
                       </div>
                     </div>
