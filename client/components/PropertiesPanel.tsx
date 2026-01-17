@@ -6,7 +6,7 @@ import { Label } from "@/components/ui/label";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Slider } from "@/components/ui/slider";
 import { cn } from "@/lib/utils";
-import { Palette, BoxSelect, Zap, Type } from "lucide-react";
+import { Palette, BoxSelect, Type } from "lucide-react";
 
 export function PropertiesPanel() {
   const { selectedElement, getBlock, updateBlockStyle, updateBlock } = useBuilder();
