@@ -112,18 +112,18 @@ function BuilderContent() {
 
       {/* Main Layout */}
       <div className="flex flex-1 overflow-hidden">
-        {/* Left Panel - Blocks Palette */}
-        <div className="hidden md:flex md:w-72 md:flex-col border-r border-border">
-          <BlocksPalette />
+        {/* Left Panel - Layers */}
+        <div className="hidden md:flex md:w-64 md:flex-col border-r border-border bg-card/30">
+          <LayersPanel />
         </div>
 
         {/* Center Canvas - Main */}
         <div className="flex-1 flex overflow-hidden">
-          <Canvas zoom={zoom} />
+          <CanvasV2 currentTool={currentTool} zoom={zoom} setZoom={setZoom} />
         </div>
 
         {/* Right Panel - Properties */}
-        <div className="hidden xl:flex xl:w-80 xl:flex-col border-l border-border">
+        <div className="hidden lg:flex lg:w-72 lg:flex-col border-l border-border bg-card/30">
           <PropertiesPanel />
         </div>
       </div>
