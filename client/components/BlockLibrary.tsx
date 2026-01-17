@@ -70,6 +70,10 @@ const BLOCK_ICONS: Record<BlockType, React.ReactNode> = {
   image: <Images className="w-4 h-4" />,
   grid: <Grid3x3 className="w-4 h-4" />,
   "flex-container": <Columns className="w-4 h-4" />,
+  frame: <FrameIcon className="w-4 h-4" />,
+  rectangle: <Square className="w-4 h-4" />,
+  circle: <Circle className="w-4 h-4" />,
+  "shape-text": <Type className="w-4 h-4" />,
 };
 
 export function BlockLibrary() {
